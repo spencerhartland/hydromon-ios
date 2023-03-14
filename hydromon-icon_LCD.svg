@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Created with Vectornator (http://vectornator.io/) -->
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 2048 2048" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs/>
-<g id="LCD" vectornator:layerName="LCD">
-<path d="M767.764 436.889C767.406 436.939 767.057 437.05 766.728 437.253L704.216 475.829C703.594 476.214 703.166 476.85 703.012 477.565L696.686 506.96L690.751 522.189C690.628 522.505 690.553 522.858 690.555 523.197L692.962 912.911C692.965 913.262 693.051 913.623 693.186 913.947L701.081 932.759C701.527 933.824 702.589 934.466 703.74 934.383L771.096 929.512C772.088 929.44 772.962 928.826 773.363 927.916L782.154 907.956C782.304 907.616 782.405 907.264 782.405 906.892L783.217 462.364C783.218 461.914 783.096 461.471 782.881 461.076C782.494 460.363 770.895 438.973 770.508 438.261C769.956 437.244 768.838 436.74 767.764 436.889Z" fill="#000000" fill-rule="nonzero" opacity="1" stroke="none"/>
-</g>
-</svg>
