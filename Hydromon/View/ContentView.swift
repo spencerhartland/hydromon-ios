@@ -9,19 +9,15 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
-    private let httpRequestHandler = RequestHandler()
     private let hydromonText = "hydromon"
     
-    @State var connected = true
-    @State var LCDColor = UIColor(.black)
-    @State var LEDColor = UIColor(.black)
-    @State var preferences = PreferenceSet()
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
-                    ConnectionStatusView($connected)
+                    ConnectionStatusView($viewModel.connected)
                         .offset(x: -8)
                         .padding(.bottom)
                     ZStack(alignment: .bottomTrailing) {
@@ -32,26 +28,20 @@ struct ContentView: View {
                     }
                 }
                 .padding(.leading)
-                if connected {
+                if viewModel.connected {
                     HydromonStatusView(LCDColor: .constant(.red), statusLEDColor: .constant(.blue), LCDText: .constant("Hello, world!"), fillLevel: .constant(0.75))
-                    ControlView(preferences: $preferences)
+                    ControlView(preferences: $viewModel.preferences)
                 } else {
                     Spacer()
                     ConnectionProblemView {
-                        httpRequestHandler.testConnection { success, response in
-                            self.connected = success
-                            if !success { print(response) }
-                        }
+                        viewModel.testConnection()
                     }
                     Spacer()
                 }
             }
         }
         .onAppear {
-            httpRequestHandler.testConnection { success, response in
-                self.connected = true
-                if !success { print(response) }
-            }
+            viewModel.testConnection()
         }
     }
 }
