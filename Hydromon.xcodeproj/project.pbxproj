@@ -16,6 +16,7 @@
 		002285CF299CDFF8008C288C /* Rajdhani-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAC299CDAF100F0528C /* Rajdhani-SemiBold.ttf */; };
 		00472FB329BF18CC00D5B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00472FB229BF18CC00D5B105 /* Assets.xcassets */; };
 		00472FB529C12EAC00D5B105 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */; };
+		00472FBA29C13CEB00D5B105 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 00472FB929C13CEB00D5B105 /* README.md */; };
 		008C062929B5CB9600A94C13 /* HydromonLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062829B5CB9600A94C13 /* HydromonLogoView.swift */; };
 		008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */; };
 		008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */; };
@@ -40,6 +41,7 @@
 		00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySOCView.swift; sourceTree = "<group>"; };
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		00472FB929C13CEB00D5B105 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		008C062829B5CB9600A94C13 /* HydromonLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonLogoView.swift; sourceTree = "<group>"; };
 		008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewModifer.swift; sourceTree = "<group>"; };
 		008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelStatusView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		00F8F5892989CDD00082D0AF = {
 			isa = PBXGroup;
 			children = (
+				00472FB929C13CEB00D5B105 /* README.md */,
 				00F8F5942989CDD00082D0AF /* Hydromon */,
 				00F8F5932989CDD00082D0AF /* Products */,
 			);
@@ -238,6 +241,7 @@
 				00F8F59E2989CDD20082D0AF /* Preview Assets.xcassets in Resources */,
 				002285CE299CDFF8008C288C /* Rajdhani-Medium.ttf in Resources */,
 				002285CF299CDFF8008C288C /* Rajdhani-SemiBold.ttf in Resources */,
+				00472FBA29C13CEB00D5B105 /* README.md in Resources */,
 				00472FB329BF18CC00D5B105 /* Assets.xcassets in Resources */,
 				002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */,
 			);
