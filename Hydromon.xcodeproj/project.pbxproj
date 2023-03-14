@@ -76,19 +76,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		008C062E29B6A16A00A94C13 /* Accessory Views */ = {
+		00472FB729C13C0B00D5B105 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */,
+				00020B8B2994DFB900867F15 /* PreferenceSet.swift */,
+				00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */,
 			);
-			path = "Accessory Views";
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00472FB829C13C2500D5B105 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F5A42989CF110082D0AF /* RequestHandler.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		008C68EC29B5C07C00B0E6B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				00F8F5972989CDD00082D0AF /* ContentView.swift */,
-				00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */,
 				008C062829B5CB9600A94C13 /* HydromonLogoView.swift */,
 				008C68ED29B5C09500B0E6B0 /* Status */,
 				008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */,
@@ -96,6 +104,7 @@
 				008C68E629B36F4400B0E6B0 /* MarqueeTextView.swift */,
 				008C68EA29B57F0800B0E6B0 /* ViewGeometry.swift */,
 				00FD7011299F1060001F019B /* ConnectionProblemView.swift */,
+				008DFCD7299576E000F82A87 /* DeviceModelView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -106,7 +115,7 @@
 				008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */,
 				00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */,
 				000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */,
-				008C062E29B6A16A00A94C13 /* Accessory Views */,
+				008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -143,12 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				00F8F5952989CDD00082D0AF /* HydromonApp.swift */,
-				00B9DBAB299CDAD600F0528C /* Fonts */,
-				008C68EC29B5C07C00B0E6B0 /* View */,
 				00B9DBA9299CD71B00F0528C /* AppConstants.swift */,
-				008DFCD7299576E000F82A87 /* DeviceModelView.swift */,
-				00020B8B2994DFB900867F15 /* PreferenceSet.swift */,
-				00F8F5A42989CF110082D0AF /* RequestHandler.swift */,
+				00B9DBAB299CDAD600F0528C /* Fonts */,
+				00472FB829C13C2500D5B105 /* Network */,
+				00472FB729C13C0B00D5B105 /* Model */,
+				008C68EC29B5C07C00B0E6B0 /* View */,
 				00B9DBB1299CDB8800F0528C /* Info.plist */,
 				008DFCDB29957A7200F82A87 /* hydromon.usdz */,
 				00472FB229BF18CC00D5B105 /* Assets.xcassets */,

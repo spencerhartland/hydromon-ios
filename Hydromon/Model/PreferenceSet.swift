@@ -12,7 +12,7 @@ import Foundation
  */
 struct PreferenceSet: Codable {
     // CodingKeys for decoding from JSON with Python-style names
-    enum PreferenceKeys: String, CodingKey {
+    enum PreferenceKey: String, CodingKey {
         case LCDStandbyMessage = "lcd-standby-message"
         case LCDAlertMessage = "lcd-alert-message"
         case LCDStandbyColor = "lcd-standby-color"
@@ -70,7 +70,7 @@ struct PreferenceSet: Codable {
 extension PreferenceSet {
     init(from decoder: Decoder) throws {
         // Root
-        let root = try decoder.container(keyedBy: PreferenceKeys.self)
+        let root = try decoder.container(keyedBy: PreferenceKey.self)
         LCDStandbyMessage = try root.decode(String.self, forKey: .LCDStandbyMessage)
         LCDAlertMessage = try root.decode(String.self, forKey: .LCDAlertMessage)
         LCDStandbyColor = try root.decode(RGB.self, forKey: .LCDStandbyColor)

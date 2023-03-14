@@ -20,5 +20,10 @@ extension ContentView {
                 if !success { print(response) }
             }
         }
+        
+        func updatePreference(_ preference: PreferenceSet.PreferenceKey, value: Any) {
+            // TODO: Implement logic to update any preference in PrefereceSet
+            return
+        }
     }
 }
