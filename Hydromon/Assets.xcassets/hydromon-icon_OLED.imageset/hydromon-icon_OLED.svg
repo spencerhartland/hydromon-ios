@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 2048 2048" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<g id="OLED" vectornator:layerName="OLED">
+<path d="M1336.95 1491.39C1331.69 1491.39 1327.71 1497.14 1327.71 1503.96L1327.71 1651.75C1327.71 1658.57 1331.69 1664.29 1336.95 1664.29L1355.65 1664.29C1356.64 1664.29 1357.45 1663.49 1357.45 1662.5L1357.45 1493.19C1357.45 1492.2 1356.64 1491.39 1355.65 1491.39L1336.95 1491.39Z" fill="#000000" fill-rule="nonzero" opacity="1" stroke="none"/>
+</g>
+</svg>

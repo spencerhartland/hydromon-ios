@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00020B8B2994DFB900867F15 /* PreferenceSet.swift */; };
+		00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */; };
+		002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */; };
+		002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */; };
+		002285CD299CDFF8008C288C /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */; };
+		002285CE299CDFF8008C288C /* Rajdhani-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBB0299CDAF100F0528C /* Rajdhani-Medium.ttf */; };
+		002285CF299CDFF8008C288C /* Rajdhani-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAC299CDAF100F0528C /* Rajdhani-SemiBold.ttf */; };
+		00472FB329BF18CC00D5B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00472FB229BF18CC00D5B105 /* Assets.xcassets */; };
+		00472FB529C12EAC00D5B105 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */; };
+		008C062929B5CB9600A94C13 /* HydromonLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062829B5CB9600A94C13 /* HydromonLogoView.swift */; };
+		008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */; };
+		008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */; };
+		008C68E729B36F4400B0E6B0 /* MarqueeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C68E629B36F4400B0E6B0 /* MarqueeTextView.swift */; };
+		008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */; };
+		008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C68EA29B57F0800B0E6B0 /* ViewGeometry.swift */; };
+		008C68EE29B5C19300B0E6B0 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */; };
+		008DFCD8299576E000F82A87 /* DeviceModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008DFCD7299576E000F82A87 /* DeviceModelView.swift */; };
+		008DFCDC29957A7200F82A87 /* hydromon.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 008DFCDB29957A7200F82A87 /* hydromon.usdz */; };
+		00B9DBAA299CD71B00F0528C /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B9DBA9299CD71B00F0528C /* AppConstants.swift */; };
+		00F8F5962989CDD00082D0AF /* HydromonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5952989CDD00082D0AF /* HydromonApp.swift */; };
+		00F8F5982989CDD00082D0AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5972989CDD00082D0AF /* ContentView.swift */; };
+		00F8F59E2989CDD20082D0AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F8F59D2989CDD20082D0AF /* Preview Assets.xcassets */; };
+		00F8F5A52989CF110082D0AF /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5A42989CF110082D0AF /* RequestHandler.swift */; };
+		00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD700E299F0B33001F019B /* GlowViewModifier.swift */; };
+		00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD7011299F1060001F019B /* ConnectionProblemView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00020B8B2994DFB900867F15 /* PreferenceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceSet.swift; sourceTree = "<group>"; };
+		000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
+		00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySOCView.swift; sourceTree = "<group>"; };
+		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		008C062829B5CB9600A94C13 /* HydromonLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonLogoView.swift; sourceTree = "<group>"; };
+		008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewModifer.swift; sourceTree = "<group>"; };
+		008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelStatusView.swift; sourceTree = "<group>"; };
+		008C68E629B36F4400B0E6B0 /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
+		008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonStatusView.swift; sourceTree = "<group>"; };
+		008C68EA29B57F0800B0E6B0 /* ViewGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewGeometry.swift; sourceTree = "<group>"; };
+		008DFCD7299576E000F82A87 /* DeviceModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModelView.swift; sourceTree = "<group>"; };
+		008DFCDB29957A7200F82A87 /* hydromon.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = hydromon.usdz; sourceTree = "<group>"; };
+		00B9DBA9299CD71B00F0528C /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		00B9DBAC299CDAF100F0528C /* Rajdhani-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-SemiBold.ttf"; sourceTree = "<group>"; };
+		00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Regular.ttf"; sourceTree = "<group>"; };
+		00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Light.ttf"; sourceTree = "<group>"; };
+		00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Bold.ttf"; sourceTree = "<group>"; };
+		00B9DBB0299CDAF100F0528C /* Rajdhani-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Medium.ttf"; sourceTree = "<group>"; };
+		00B9DBB1299CDB8800F0528C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		00F8F5922989CDD00082D0AF /* Hydromon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydromon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F8F5952989CDD00082D0AF /* HydromonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonApp.swift; sourceTree = "<group>"; };
+		00F8F5972989CDD00082D0AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00F8F59B2989CDD10082D0AF /* Hydromon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hydromon.entitlements; sourceTree = "<group>"; };
+		00F8F59D2989CDD20082D0AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00F8F5A42989CF110082D0AF /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		00FD700E299F0B33001F019B /* GlowViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowViewModifier.swift; sourceTree = "<group>"; };
+		00FD7011299F1060001F019B /* ConnectionProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProblemView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00F8F58F2989CDD00082D0AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		008C062E29B6A16A00A94C13 /* Accessory Views */ = {
+			isa = PBXGroup;
+			children = (
+				008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */,
+			);
+			path = "Accessory Views";
+			sourceTree = "<group>";
+		};
+		008C68EC29B5C07C00B0E6B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F5972989CDD00082D0AF /* ContentView.swift */,
+				00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */,
+				008C062829B5CB9600A94C13 /* HydromonLogoView.swift */,
+				008C68ED29B5C09500B0E6B0 /* Status */,
+				008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */,
+				00FD700E299F0B33001F019B /* GlowViewModifier.swift */,
+				008C68E629B36F4400B0E6B0 /* MarqueeTextView.swift */,
+				008C68EA29B57F0800B0E6B0 /* ViewGeometry.swift */,
+				00FD7011299F1060001F019B /* ConnectionProblemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		008C68ED29B5C09500B0E6B0 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */,
+				00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */,
+				000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */,
+				008C062E29B6A16A00A94C13 /* Accessory Views */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
+		00B9DBAB299CDAD600F0528C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */,
+				00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */,
+				00B9DBB0299CDAF100F0528C /* Rajdhani-Medium.ttf */,
+				00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */,
+				00B9DBAC299CDAF100F0528C /* Rajdhani-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		00F8F5892989CDD00082D0AF = {
+			isa = PBXGroup;
+			children = (
+				00F8F5942989CDD00082D0AF /* Hydromon */,
+				00F8F5932989CDD00082D0AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00F8F5932989CDD00082D0AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F5922989CDD00082D0AF /* Hydromon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00F8F5942989CDD00082D0AF /* Hydromon */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F5952989CDD00082D0AF /* HydromonApp.swift */,
+				00B9DBAB299CDAD600F0528C /* Fonts */,
+				008C68EC29B5C07C00B0E6B0 /* View */,
+				00B9DBA9299CD71B00F0528C /* AppConstants.swift */,
+				008DFCD7299576E000F82A87 /* DeviceModelView.swift */,
+				00020B8B2994DFB900867F15 /* PreferenceSet.swift */,
+				00F8F5A42989CF110082D0AF /* RequestHandler.swift */,
+				00B9DBB1299CDB8800F0528C /* Info.plist */,
+				008DFCDB29957A7200F82A87 /* hydromon.usdz */,
+				00472FB229BF18CC00D5B105 /* Assets.xcassets */,
+				00F8F59B2989CDD10082D0AF /* Hydromon.entitlements */,
+				00F8F59C2989CDD20082D0AF /* Preview Content */,
+			);
+			path = Hydromon;
+			sourceTree = "<group>";
+		};
+		00F8F59C2989CDD20082D0AF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F59D2989CDD20082D0AF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00F8F5912989CDD00082D0AF /* Hydromon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00F8F5A12989CDD20082D0AF /* Build configuration list for PBXNativeTarget "Hydromon" */;
+			buildPhases = (
+				00F8F58E2989CDD00082D0AF /* Sources */,
+				00F8F58F2989CDD00082D0AF /* Frameworks */,
+				00F8F5902989CDD00082D0AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hydromon;
+			productName = Hydromon;
+			productReference = 00F8F5922989CDD00082D0AF /* Hydromon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00F8F58A2989CDD00082D0AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					00F8F5912989CDD00082D0AF = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 00F8F58D2989CDD00082D0AF /* Build configuration list for PBXProject "Hydromon" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00F8F5892989CDD00082D0AF;
+			productRefGroup = 00F8F5932989CDD00082D0AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00F8F5912989CDD00082D0AF /* Hydromon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00F8F5902989CDD00082D0AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */,
+				008DFCDC29957A7200F82A87 /* hydromon.usdz in Resources */,
+				002285CD299CDFF8008C288C /* Rajdhani-Regular.ttf in Resources */,
+				00F8F59E2989CDD20082D0AF /* Preview Assets.xcassets in Resources */,
+				002285CE299CDFF8008C288C /* Rajdhani-Medium.ttf in Resources */,
+				002285CF299CDFF8008C288C /* Rajdhani-SemiBold.ttf in Resources */,
+				00472FB329BF18CC00D5B105 /* Assets.xcassets in Resources */,
+				002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00F8F58E2989CDD00082D0AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */,
+				008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */,
+				008C062929B5CB9600A94C13 /* HydromonLogoView.swift in Sources */,
+				00F8F5982989CDD00082D0AF /* ContentView.swift in Sources */,
+				00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */,
+				00F8F5962989CDD00082D0AF /* HydromonApp.swift in Sources */,
+				008C68EE29B5C19300B0E6B0 /* ConnectionStatusView.swift in Sources */,
+				008DFCD8299576E000F82A87 /* DeviceModelView.swift in Sources */,
+				00472FB529C12EAC00D5B105 /* ContentView-ViewModel.swift in Sources */,
+				008C68E729B36F4400B0E6B0 /* MarqueeTextView.swift in Sources */,
+				00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */,
+				00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */,
+				00B9DBAA299CD71B00F0528C /* AppConstants.swift in Sources */,
+				008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */,
+				008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */,
+				00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */,
+				00F8F5A52989CF110082D0AF /* RequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00F8F59F2989CDD20082D0AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00F8F5A02989CDD20082D0AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		00F8F5A22989CDD20082D0AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hydromon/Hydromon.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Hydromon/Preview Content\"";
+				DEVELOPMENT_TEAM = 4M48D4QJHN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hydromon/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spencerhartland.Hydromon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00F8F5A32989CDD20082D0AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hydromon/Hydromon.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Hydromon/Preview Content\"";
+				DEVELOPMENT_TEAM = 4M48D4QJHN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hydromon/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spencerhartland.Hydromon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00F8F58D2989CDD00082D0AF /* Build configuration list for PBXProject "Hydromon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00F8F59F2989CDD20082D0AF /* Debug */,
+				00F8F5A02989CDD20082D0AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00F8F5A12989CDD20082D0AF /* Build configuration list for PBXNativeTarget "Hydromon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00F8F5A22989CDD20082D0AF /* Debug */,
+				00F8F5A32989CDD20082D0AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00F8F58A2989CDD00082D0AF /* Project object */;
+}
