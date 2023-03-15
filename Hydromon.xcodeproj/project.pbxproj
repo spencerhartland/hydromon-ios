@@ -17,6 +17,8 @@
 		00472FB329BF18CC00D5B105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00472FB229BF18CC00D5B105 /* Assets.xcassets */; };
 		00472FB529C12EAC00D5B105 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */; };
 		00472FBA29C13CEB00D5B105 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 00472FB929C13CEB00D5B105 /* README.md */; };
+		00472FBC29C1582600D5B105 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00472FBB29C1582600D5B105 /* ControlView.swift */; };
+		00472FBE29C1593200D5B105 /* HydromonStatusView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00472FBD29C1593200D5B105 /* HydromonStatusView-ViewModel.swift */; };
 		008C062929B5CB9600A94C13 /* HydromonLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062829B5CB9600A94C13 /* HydromonLogoView.swift */; };
 		008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */; };
 		008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */; };
@@ -42,6 +44,8 @@
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		00472FB929C13CEB00D5B105 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		00472FBB29C1582600D5B105 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		00472FBD29C1593200D5B105 /* HydromonStatusView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydromonStatusView-ViewModel.swift"; sourceTree = "<group>"; };
 		008C062829B5CB9600A94C13 /* HydromonLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonLogoView.swift; sourceTree = "<group>"; };
 		008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewModifer.swift; sourceTree = "<group>"; };
 		008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelStatusView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			children = (
 				00020B8B2994DFB900867F15 /* PreferenceSet.swift */,
 				00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */,
+				00472FBD29C1593200D5B105 /* HydromonStatusView-ViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,9 +103,10 @@
 		008C68EC29B5C07C00B0E6B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				00F8F5972989CDD00082D0AF /* ContentView.swift */,
-				008C062829B5CB9600A94C13 /* HydromonLogoView.swift */,
 				008C68ED29B5C09500B0E6B0 /* Status */,
+				00F8F5972989CDD00082D0AF /* ContentView.swift */,
+				00472FBB29C1582600D5B105 /* ControlView.swift */,
+				008C062829B5CB9600A94C13 /* HydromonLogoView.swift */,
 				008C062A29B5DAB400A94C13 /* HighlightViewModifer.swift */,
 				00FD700E299F0B33001F019B /* GlowViewModifier.swift */,
 				008C68E629B36F4400B0E6B0 /* MarqueeTextView.swift */,
@@ -205,7 +211,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					00F8F5912989CDD00082D0AF = {
 						CreatedOnToolsVersion = 14.1;
@@ -270,7 +276,9 @@
 				008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */,
 				008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */,
 				00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */,
+				00472FBC29C1582600D5B105 /* ControlView.swift in Sources */,
 				00F8F5A52989CF110082D0AF /* RequestHandler.swift in Sources */,
+				00472FBE29C1593200D5B105 /* HydromonStatusView-ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +318,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -368,6 +377,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -394,6 +404,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydromon/Hydromon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hydromon/Preview Content\"";
 				DEVELOPMENT_TEAM = 4M48D4QJHN;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -433,6 +444,7 @@
 				CODE_SIGN_ENTITLEMENTS = Hydromon/Hydromon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hydromon/Preview Content\"";
 				DEVELOPMENT_TEAM = 4M48D4QJHN;
 				ENABLE_HARDENED_RUNTIME = YES;

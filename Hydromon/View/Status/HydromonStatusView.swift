@@ -17,10 +17,10 @@ private struct Icon {
 
 struct HydromonStatusView: View {
     
+    @StateObject var viewModel = ViewModel()
+    
     @Binding var LCDColor: Color
     @Binding var statusLEDColor: Color
-    @Binding var LCDText: String
-    @Binding var fillLevel: Double
     
     @State private var contentSize: CGSize = .zero
     
@@ -38,7 +38,7 @@ struct HydromonStatusView: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(Colors.primary)
                 // OLED
-                OLEDDisplayView(fillLevel: $fillLevel)
+                OLEDDisplayView(fillLevel: $viewModel.fillLevel)
                 // Status LED
                 Image(Icon.ledImageName)
                     .resizable()
@@ -67,7 +67,7 @@ struct HydromonStatusView: View {
                     Spacer()
                     ZStack(alignment: .topLeading) {
                         Color.clear
-                        WaterLevelStatusView($fillLevel)
+                        WaterLevelStatusView($viewModel.fillLevel)
                     }
                     .frame(height: 157)
                 }
@@ -113,6 +113,6 @@ private struct OLEDDisplayView: View {
 
 struct HydromonStatusView_Previews: PreviewProvider {
     static var previews: some View {
-        HydromonStatusView(LCDColor: .constant(.red), statusLEDColor: .constant(.green), LCDText: .constant("Hello, world!"), fillLevel: .constant(0.5))
+        HydromonStatusView(viewModel: .init(), LCDColor: .constant(.green), statusLEDColor: .constant(.green))
     }
 }
