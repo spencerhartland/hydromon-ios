@@ -49,3 +49,24 @@ struct Fonts {
         return Font.custom("Rajdhani-SemiBold", size: size)
     }
 }
+
+struct Hydromon {
+    struct Icon {
+        private static let filenamePrefix = "hydromon-icon_"
+        static let bottleImageName = filenamePrefix + "bottle"
+        static let oledImageName = filenamePrefix + "OLED"
+        static let ledImageName = filenamePrefix + "LED"
+        static let lcdImageName = filenamePrefix + "LCD"
+    }
+    
+    enum Component: String {
+        case LCD = "lcd"
+        case OLED = "oled"
+        case LED = "led"
+    }
+    
+    enum Mode: String {
+        case standby = "standby"
+        case alert = "alert"
+    }
+}
