@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-private struct Icon {
-    private static let filenamePrefix = "hydromon-icon_"
-    static let bottleImageName = filenamePrefix + "bottle"
-    static let oledImageName = filenamePrefix + "OLED"
-    static let ledImageName = filenamePrefix + "LED"
-    static let lcdImageName = filenamePrefix + "LCD"
-}
-
 struct HydromonStatusView: View {
     
     @StateObject var viewModel = ViewModel()
@@ -33,20 +25,20 @@ struct HydromonStatusView: View {
                 }
             ZStack {
                 // Hydroflask bottle
-                Image(Icon.bottleImageName)
+                Image(Hydromon.Icon.bottleImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(Colors.primary)
                 // OLED
                 OLEDDisplayView(fillLevel: $viewModel.fillLevel)
                 // Status LED
-                Image(Icon.ledImageName)
+                Image(Hydromon.Icon.ledImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(statusLEDColor)
                     .glow(statusLEDColor, intensity: 1.75)
                 // LCD
-                Image(Icon.lcdImageName)
+                Image(Hydromon.Icon.lcdImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(LCDColor)
@@ -82,7 +74,7 @@ private struct OLEDDisplayView: View {
     @Binding var fillLevel: Double
     
     var body: some View {
-        Image(Icon.oledImageName)
+        Image(Hydromon.Icon.oledImageName)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .foregroundColor(.clear)
@@ -97,7 +89,7 @@ private struct OLEDDisplayView: View {
                         }
                     }
                     .mask {
-                        Image(Icon.oledImageName)
+                        Image(Hydromon.Icon.oledImageName)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
