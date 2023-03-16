@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomColorPicker: View {
     private let colorPickerColorWellImageName = "color-picker_color-well"
+    private let colorPickerRGBEntryOutlineImageName = "color-picker_rgb-entry-outline"
     private let subtitleTemplate = "Choose the %@'s %@ color by sliding the sliders or entering RGB values."
     
     let component: Hydromon.Component
@@ -25,6 +26,8 @@ struct CustomColorPicker: View {
                 .font(Fonts.semibold(size: 10))
                 .multilineTextAlignment(.center)
             colorSelectionView
+            rgbEntry
+                .padding(.vertical, 32)
             VStack(spacing: 32) {
                 ColorPickerBar(color: .red) { value in
                     self.rgb.0 = value
@@ -45,6 +48,33 @@ struct CustomColorPicker: View {
         .foregroundColor(Colors.primary)
     }
     
+    var rgbEntry: some View {
+        ZStack {
+            Image(colorPickerRGBEntryOutlineImageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(Colors.secondaryBackground)
+            HStack(spacing: 0) {
+                Text("R")
+                Text("\(self.rgb.0, specifier: "%.0f")")
+                    .padding(.trailing, 4)
+                    .foregroundColor(Colors.primary)
+                Text("G")
+                Text("\(self.rgb.1, specifier: "%.0f")")
+                    .padding(.trailing, 4)
+                    .foregroundColor(Colors.primary)
+                Text("B")
+                Text("\(self.rgb.2, specifier: "%.0f")")
+                    .padding(.trailing, 4)
+                    .foregroundColor(Colors.primary)
+            }
+            .font(Fonts.semibold(size: 18))
+            .offset(x: 6)
+        }
+        .frame(width: 170)
+        .foregroundColor(Colors.secondary)
+    }
+    
     var colorSelectionView: some View {
         ZStack {
             Image(Hydromon.Icon.bottleImageName)
@@ -53,6 +83,7 @@ struct CustomColorPicker: View {
                 .foregroundColor(Colors.secondaryBackground)
             switch component {
             case .LCD:
+                // TODO: - Add in accessory views that show the color in a largercolor well in addition to the compoent
                 Image(Hydromon.Icon.lcdImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
