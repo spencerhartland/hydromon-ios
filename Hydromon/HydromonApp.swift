@@ -9,14 +9,19 @@ import SwiftUI
 
 @main
 struct HydromonApp: App {
+    @State private var presentedViews: [AnyView] = []
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .background {
-                    Colors.background
-                        .ignoresSafeArea()
-                }
-                .preferredColorScheme(.dark)
+            if presentedViews.count > 0 {
+                presentedViews.last
+                    .background { Colors.background.ignoresSafeArea() }
+                    .preferredColorScheme(.dark)
+            } else {
+                ContentView(presentedViews: $presentedViews)
+                    .background { Colors.background.ignoresSafeArea() }
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }

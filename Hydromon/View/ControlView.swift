@@ -19,11 +19,18 @@ struct ControlView: View {
     private let lcdStandbyMessgageControlTitle = "LCD Standby Message"
     
     @Binding var preferences: PreferenceSet
+    @Binding var presentedViews: [AnyView]
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 colorPickerButton(title: "LCD STANDBY")
+                    .onTapGesture {
+                        self.presentedViews.append(.init(CustomColorPicker(component: .LCD, mode: .standby, action: { color in
+                            preferences.LCDStandbyColor = color
+                            self.presentedViews.removeLast()
+                        })))
+                    }
                 colorPickerButton(title: "LED STANDBY")
             }
             HStack {
@@ -104,6 +111,6 @@ struct ControlView: View {
 
 struct ControlView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlView(preferences: .constant(.init()))
+        ControlView(preferences: .constant(.init()), presentedViews: .constant(.init()))
     }
 }

@@ -34,37 +34,31 @@ struct PreferenceSet: Codable {
     
     // Preference values
     /// The message displayed on the LCD when the device is awake during standby.
-    let LCDStandbyMessage: String
+    var LCDStandbyMessage: String
     /// The message displayed on the LCD when the drink reminder alert is active.
-    let LCDAlertMessage: String
+    var LCDAlertMessage: String
     /// The color of the LCD backlight when the device is awake during standby.
-    let LCDStandbyColor: RGB
+    var LCDStandbyColor: RGB
     /// The color of the LCD backlight when the drink reminder alert is active.
-    let LCDAlertColor: RGB
+    var LCDAlertColor: RGB
     /// The color of the LED  when the device is awake during standby.
-    let LEDStandbyColor: RGB
+    var LEDStandbyColor: RGB
     /// The color of the LED  when the drink reminder alert is active.
-    let LEDAlertColor: RGB
+    var LEDAlertColor: RGB
     /// The amount of time in seconds that the device remains awake after being lifted during standby.
-    let standbyTimeout: Int
+    var standbyTimeout: Int
     /// The amount of time in seconds that the drink reminder alert is active.
-    let alertTimeout: Int
+    var alertTimeout: Int
     /// The duration of time in seconds between drink reminder alerts.
-    let alertDelay: Int
+    var alertDelay: Int
     /// The maximum brightness setting of the OLED. Maximum valid brightness is 255.
-    let OLEDMaxBrightness: Int
+    var OLEDMaxBrightness: Int
     /// The average size of a single drink of water, in milliliters.
-    let sipSize: Int
+    var sipSize: Int
     /// The name of the device's local network.
-    let localNetworkSSID: String
+    var localNetworkSSID: String
     /// The password to the device's local newtork.
-    let localNetworkPassword: String
-    
-    struct RGB: Codable {
-        let red: Int
-        let green: Int
-        let blue: Int
-    }
+    var localNetworkPassword: String
 }
 
 extension PreferenceSet {

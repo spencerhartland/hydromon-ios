@@ -30,6 +30,7 @@
 		008DFCD8299576E000F82A87 /* DeviceModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008DFCD7299576E000F82A87 /* DeviceModelView.swift */; };
 		008DFCDC29957A7200F82A87 /* hydromon.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 008DFCDB29957A7200F82A87 /* hydromon.usdz */; };
 		00B9DBAA299CD71B00F0528C /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B9DBA9299CD71B00F0528C /* AppConstants.swift */; };
+		00CEE1D929C4228F00415001 /* RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE1D829C4228F00415001 /* RGB.swift */; };
 		00F8F5962989CDD00082D0AF /* HydromonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5952989CDD00082D0AF /* HydromonApp.swift */; };
 		00F8F5982989CDD00082D0AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5972989CDD00082D0AF /* ContentView.swift */; };
 		00F8F59E2989CDD20082D0AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F8F59D2989CDD20082D0AF /* Preview Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Bold.ttf"; sourceTree = "<group>"; };
 		00B9DBB0299CDAF100F0528C /* Rajdhani-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rajdhani-Medium.ttf"; sourceTree = "<group>"; };
 		00B9DBB1299CDB8800F0528C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		00CEE1D829C4228F00415001 /* RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB.swift; sourceTree = "<group>"; };
 		00F8F5922989CDD00082D0AF /* Hydromon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydromon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F8F5952989CDD00082D0AF /* HydromonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonApp.swift; sourceTree = "<group>"; };
 		00F8F5972989CDD00082D0AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				008C68ED29B5C09500B0E6B0 /* Status */,
 				00F8F5972989CDD00082D0AF /* ContentView.swift */,
+				008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */,
 				00472FBB29C1582600D5B105 /* ControlView.swift */,
 				0070942529C1AB1B007801A3 /* CustomColorPicker.swift */,
 				008C062829B5CB9600A94C13 /* HydromonLogoView.swift */,
@@ -123,7 +126,6 @@
 		008C68ED29B5C09500B0E6B0 /* Status */ = {
 			isa = PBXGroup;
 			children = (
-				008C68E829B41FE600B0E6B0 /* HydromonStatusView.swift */,
 				00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */,
 				000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */,
 				008C062C29B5F06B00A94C13 /* WaterLevelStatusView.swift */,
@@ -141,6 +143,15 @@
 				00B9DBAC299CDAF100F0528C /* Rajdhani-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		00CEE1D729C4227700415001 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				00B9DBA9299CD71B00F0528C /* AppConstants.swift */,
+				00CEE1D829C4228F00415001 /* RGB.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		00F8F5892989CDD00082D0AF = {
@@ -164,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				00F8F5952989CDD00082D0AF /* HydromonApp.swift */,
-				00B9DBA9299CD71B00F0528C /* AppConstants.swift */,
+				00CEE1D729C4227700415001 /* Common */,
 				00B9DBAB299CDAD600F0528C /* Fonts */,
 				00472FB829C13C2500D5B105 /* Network */,
 				00472FB729C13C0B00D5B105 /* Model */,
@@ -281,6 +292,7 @@
 				008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */,
 				00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */,
 				00472FBC29C1582600D5B105 /* ControlView.swift in Sources */,
+				00CEE1D929C4228F00415001 /* RGB.swift in Sources */,
 				00F8F5A52989CF110082D0AF /* RequestHandler.swift in Sources */,
 				00472FBE29C1593200D5B105 /* HydromonStatusView-ViewModel.swift in Sources */,
 			);
