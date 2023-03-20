@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     private let hydromonText = "hydromon"
     
-    @Binding var presentedViews: [AnyView]
+    @Binding var presentedViews: [Presentable]
     @StateObject private var viewModel = ViewModel()
     
     var body: some View {
@@ -31,7 +31,7 @@ struct ContentView: View {
                 .padding(.leading)
                 if viewModel.connected {
                     HydromonStatusView(viewModel: .init(), LCDColor: .constant(.green), statusLEDColor: .constant(.green))
-                    ControlView(preferences: $viewModel.preferences, presentedViews: $presentedViews)
+                    ControlView(viewModel: viewModel, presentedViews: $presentedViews)
                 } else {
                     Spacer()
                     ConnectionProblemView {

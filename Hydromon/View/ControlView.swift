@@ -18,43 +18,46 @@ struct ControlView: View {
     private let lcdStandbyMessageFooter = "This message will be displayed on the LCD during standby when you pick up your Hydromon."
     private let lcdStandbyMessgageControlTitle = "LCD Standby Message"
     
-    @Binding var preferences: PreferenceSet
-    @Binding var presentedViews: [AnyView]
+    @ObservedObject var viewModel: ContentView.ViewModel
+    @Binding var presentedViews: [Presentable]
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                colorPickerButton(title: "LCD STANDBY")
+                colorPickerButton(
+                    title: "LCD STANDBY",
+                    color: self.viewModel.preferences.LCDStandbyColor.color())
                     .onTapGesture {
-                        self.presentedViews.append(.init(CustomColorPicker(component: .LCD, mode: .standby, action: { color in
-                            preferences.LCDStandbyColor = color
-                            self.presentedViews.removeLast()
+                        self.presentedViews.append(.colorPicker(
+                            CustomColorPicker(component: .LCD, mode: .standby, action: { rgb in
+                                self.viewModel.updatePreference(.LCDStandbyColor, value: rgb)
+                                self.presentedViews.removeLast()
                         })))
                     }
-                colorPickerButton(title: "LED STANDBY")
+                //colorPickerButton(title: "LED STANDBY")
             }
             HStack {
-                colorPickerButton(title: "LCD REMINDER")
-                colorPickerButton(title: "LED REMINDER")
+                //colorPickerButton(title: "LCD REMINDER")
+                //colorPickerButton(title: "LED REMINDER")
             }
             .padding(.bottom, 16)
-            textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
+            textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
         }
     }
     
-    func colorPickerButton(title: String) -> some View {
+    func colorPickerButton(title: String, color: Color) -> some View {
         return ZStack {
             Image(colorpickerIndicatorImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.green)
+                .foregroundColor(color)
             Image(colorPickerBackgroundImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             Image(colorPickerHighlightImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.green)
+                .foregroundColor(color)
             HStack {
                 Text(title.uppercased())
                 Spacer()
@@ -111,6 +114,6 @@ struct ControlView: View {
 
 struct ControlView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlView(preferences: .constant(.init()), presentedViews: .constant(.init()))
+        ControlView(viewModel: .init(), presentedViews: .constant(.init()))
     }
 }
