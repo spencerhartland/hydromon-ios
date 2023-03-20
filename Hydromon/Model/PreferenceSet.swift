@@ -83,9 +83,9 @@ extension PreferenceSet {
     init() {
         LCDStandbyMessage = "go vegan or die!" // CHANGE BACK TO ""
         LCDAlertMessage = ""
-        LCDStandbyColor = .init(red: 0, green: 0, blue: 0)
+        LCDStandbyColor = .init(red: 0, green: 255, blue: 0)
         LCDAlertColor = .init(red: 0, green: 0, blue: 0)
-        LEDStandbyColor = .init(red: 0, green: 0, blue: 0)
+        LEDStandbyColor = .init(red: 0, green: 255, blue: 0)
         LEDAlertColor = .init(red: 0, green: 0, blue: 0)
         standbyTimeout = 0
         alertTimeout = 0

@@ -18,7 +18,7 @@ struct CustomColorPicker: View {
     let mode: Hydromon.Mode
     let action: (RGB) -> Void
     
-    @State private var rgb = RGB(red: 255, green: 255, blue: 255)
+    @State private var rgb = (255.0, 255.0, 255.0)
     @State private var color = Color(red: 255/255, green: 255/255, blue: 255/255)
     
     var body: some View {
@@ -34,21 +34,22 @@ struct CustomColorPicker: View {
             rgbEntry
             VStack(spacing: 24) {
                 ColorPickerBar(color: Color(red: 1, green: 0, blue: 0)) { value in
-                    self.rgb.red = Int(value)
-                    self.color = Color(red: Double(self.rgb.red / 255), green: Double(self.rgb.green / 255), blue: Double(self.rgb.blue / 255))
+                    self.rgb.0 = value
+                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
+                    print(self.color.description)
                 }
                 ColorPickerBar(color: Color(red: 0, green: 1, blue: 0)) { value in
-                    self.rgb.green = Int(value)
-                    self.color = Color(red: Double(self.rgb.red / 255), green: Double(self.rgb.green / 255), blue: Double(self.rgb.blue / 255))
+                    self.rgb.1 = value
+                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
                 }
                 ColorPickerBar(color: Color(red: 0, green: 0, blue: 1)) { value in
-                    self.rgb.blue = Int(value)
-                    self.color = Color(red: Double(self.rgb.red / 255), green: Double(self.rgb.green / 255), blue: Double(self.rgb.blue / 255))
+                    self.rgb.2 = value
+                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
                 }
             }
             Spacer()
             Button {
-                action(rgb)
+                action(RGB(red: Int(rgb.0), green: Int(rgb.1), blue: Int(rgb.2)))
             } label: {
                 ZStack {
                     Image(largeButtonBackgroundImageName)
@@ -79,15 +80,15 @@ struct CustomColorPicker: View {
                 .foregroundColor(Colors.secondaryBackground)
             HStack(spacing: 0) {
                 Text("R")
-                Text("\(self.rgb.red)")
+                Text("\(self.rgb.0, specifier: "%.0f")")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
                 Text("G")
-                Text("\(self.rgb.green)")
+                Text("\(self.rgb.1, specifier: "%.0f")")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
                 Text("B")
-                Text("\(self.rgb.blue)")
+                Text("\(self.rgb.2, specifier: "%.0f")")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
             }
@@ -231,7 +232,6 @@ private struct ColorPickerBar: View {
             .onChanged({ value in
                 self.sliderValue = boundSliderValue(value.location.x)
                 action(((self.sliderValue - SliderBounds.min) / (SliderBounds.max - SliderBounds.min)) * 255)
-                print(self.sliderValue)
             })
         )
     }
