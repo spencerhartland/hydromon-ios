@@ -28,10 +28,6 @@ struct PreferenceSet: Codable {
         case localNetworkPassword = "local-network-password"
     }
     
-    enum RGBKeys: String, CodingKey {
-        case red, green, blue
-    }
-    
     // Preference values
     /// The message displayed on the LCD when the device is awake during standby.
     var LCDStandbyMessage: String
@@ -59,9 +55,23 @@ struct PreferenceSet: Codable {
     var localNetworkSSID: String
     /// The password to the device's local newtork.
     var localNetworkPassword: String
-}
-
-extension PreferenceSet {
+    
+    init() {
+        LCDStandbyMessage = "go vegan or die!" // CHANGE BACK TO ""
+        LCDAlertMessage = ""
+        LCDStandbyColor = .init(red: 0, green: 255, blue: 0)
+        LCDAlertColor = .init(red: 0, green: 0, blue: 0)
+        LEDStandbyColor = .init(red: 0, green: 255, blue: 0)
+        LEDAlertColor = .init(red: 0, green: 0, blue: 0)
+        standbyTimeout = 0
+        alertTimeout = 0
+        alertDelay = 0
+        OLEDMaxBrightness = 0
+        sipSize = 0
+        localNetworkSSID = ""
+        localNetworkPassword = ""
+    }
+    
     init(from decoder: Decoder) throws {
         // Root
         let root = try decoder.container(keyedBy: PreferenceKey.self)
@@ -78,21 +88,5 @@ extension PreferenceSet {
         sipSize = try root.decode(Int.self, forKey: .sipSize)
         localNetworkSSID = try root.decode(String.self, forKey: .localNetworkSSID)
         localNetworkPassword = try root.decode(String.self, forKey: .localNetworkPassword)
-    }
-    
-    init() {
-        LCDStandbyMessage = "go vegan or die!" // CHANGE BACK TO ""
-        LCDAlertMessage = ""
-        LCDStandbyColor = .init(red: 0, green: 255, blue: 0)
-        LCDAlertColor = .init(red: 0, green: 0, blue: 0)
-        LEDStandbyColor = .init(red: 0, green: 255, blue: 0)
-        LEDAlertColor = .init(red: 0, green: 0, blue: 0)
-        standbyTimeout = 0
-        alertTimeout = 0
-        alertDelay = 0
-        OLEDMaxBrightness = 0
-        sipSize = 0
-        localNetworkSSID = ""
-        localNetworkPassword = ""
     }
 }

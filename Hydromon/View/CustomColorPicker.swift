@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CustomColorPicker: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     private let colorPickerRGBEntryOutlineImageName = "color-picker_rgb-entry-outline"
     private let subtitleTemplate = "Choose the %@'s %@ color by sliding the sliders."
     private let largeButtonBackgroundImageName = "large-button-bg"
@@ -16,10 +18,9 @@ struct CustomColorPicker: View {
     
     let component: Hydromon.Component
     let mode: Hydromon.Mode
-    let action: (RGB) -> Void
     
-    @State private var rgb = (255.0, 255.0, 255.0)
-    @State private var color = Color(red: 255/255, green: 255/255, blue: 255/255)
+    @State private var rgb = RGB(red: 255, green: 255, blue: 255)
+    let action: (RGB) -> Void
     
     var body: some View {
         VStack(spacing: 24) {
@@ -30,26 +31,23 @@ struct CustomColorPicker: View {
                     .font(Fonts.semibold(size: 10))
                     .multilineTextAlignment(.center)
             }
-            ColorSelectionView(component: component, color: $color)
+            ColorSelectionView(component: component, rgb: $rgb)
             rgbEntry
             VStack(spacing: 24) {
                 ColorPickerBar(color: Color(red: 1, green: 0, blue: 0)) { value in
-                    self.rgb.0 = value
-                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
-                    print(self.color.description)
+                    self.rgb.red = Int(value)
                 }
                 ColorPickerBar(color: Color(red: 0, green: 1, blue: 0)) { value in
-                    self.rgb.1 = value
-                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
+                    self.rgb.green = Int(value)
                 }
                 ColorPickerBar(color: Color(red: 0, green: 0, blue: 1)) { value in
-                    self.rgb.2 = value
-                    self.color = Color(red: rgb.0 / 255, green: rgb.1 / 255, blue: rgb.2 / 255)
+                    self.rgb.blue = Int(value)
                 }
             }
             Spacer()
             Button {
-                action(RGB(red: Int(rgb.0), green: Int(rgb.1), blue: Int(rgb.2)))
+                action(self.rgb)
+                self.presentationMode.wrappedValue.dismiss()
             } label: {
                 ZStack {
                     Image(largeButtonBackgroundImageName)
@@ -63,7 +61,7 @@ struct CustomColorPicker: View {
                     Image(largeButtonGradientImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(color)
+                        .foregroundColor(rgb.color())
                 }
                 .frame(height: 64)
             }
@@ -80,15 +78,15 @@ struct CustomColorPicker: View {
                 .foregroundColor(Colors.secondaryBackground)
             HStack(spacing: 0) {
                 Text("R")
-                Text("\(self.rgb.0, specifier: "%.0f")")
+                Text("\(self.rgb.red)")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
                 Text("G")
-                Text("\(self.rgb.1, specifier: "%.0f")")
+                Text("\(self.rgb.green)")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
                 Text("B")
-                Text("\(self.rgb.2, specifier: "%.0f")")
+                Text("\(self.rgb.blue)")
                     .padding(.trailing, 4)
                     .foregroundColor(Colors.primary)
             }
@@ -106,7 +104,7 @@ private struct ColorSelectionView: View {
     
     let component: Hydromon.Component
     
-    @Binding var color: Color
+    @Binding var rgb: RGB
     
     var body: some View {
         ZStack {
@@ -120,7 +118,7 @@ private struct ColorSelectionView: View {
                 Image(Hydromon.Icon.lcdImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .glow(color, intensity: 0.5)
+                    .glow(rgb.color(), intensity: 0.5)
                 lcdDetailColorWell
             case .OLED:
                 // No color options for OLED, so ignore this case
@@ -129,11 +127,11 @@ private struct ColorSelectionView: View {
                 Image(Hydromon.Icon.ledImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .glow(color)
+                    .glow(rgb.color())
                 ledDetailColorWell
             }
         }
-        .foregroundColor(color)
+        .foregroundColor(rgb.color())
     }
     
     var lcdDetailColorWell: some View {
@@ -146,7 +144,7 @@ private struct ColorSelectionView: View {
                     Image(colorPickerColorWellImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(color)
+                        .foregroundColor(rgb.color())
                         .frame(width: 72)
                     Image(systemName: pointerSymbolName)
                         .font(.system(size: 10))
@@ -173,7 +171,7 @@ private struct ColorSelectionView: View {
                     Image(colorPickerColorWellImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(color)
+                        .foregroundColor(rgb.color())
                         .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
                         .frame(width: 72)
                 }
@@ -246,17 +244,5 @@ private struct ColorPickerBar: View {
             boundedValue = value
         }
         return boundedValue
-    }
-}
-
-struct CustomColorPicker_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomColorPicker(component: .LED, mode: .standby) { color in
-            print("\(color.red) \(color.green) \(color.blue)")
-        }
-            .background {
-                Colors.background
-                    .ignoresSafeArea()
-            }
     }
 }
