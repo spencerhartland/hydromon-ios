@@ -11,8 +11,8 @@ struct HydromonStatusView: View {
     
     @StateObject var viewModel = ViewModel()
     
-    @Binding var LCDColor: Color
-    @Binding var statusLEDColor: Color
+    @Binding var LCD: RGB
+    @Binding var statusLED: RGB
     
     @State private var contentSize: CGSize = .zero
     
@@ -35,14 +35,14 @@ struct HydromonStatusView: View {
                 Image(Hydromon.Icon.ledImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(statusLEDColor)
-                    .glow(statusLEDColor, intensity: 1.75)
+                    .foregroundColor(statusLED.color())
+                    .glow(statusLED.color(), intensity: 1.75)
                 // LCD
                 Image(Hydromon.Icon.lcdImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(LCDColor)
-                    .glow(LCDColor, intensity: 0.75)
+                    .foregroundColor(LCD.color())
+                    .glow(LCD.color(), intensity: 0.75)
             }
             .frame(width: contentSize.width / 2)
             .padding(.vertical, 16)
@@ -100,11 +100,5 @@ private struct OLEDDisplayView: View {
     func fillLevelValue(_ level: Double) -> Double {
         let offset: Double = 19
         return fullFillLevelValue - (offset - (offset * fillLevel))
-    }
-}
-
-struct HydromonStatusView_Previews: PreviewProvider {
-    static var previews: some View {
-        HydromonStatusView(viewModel: .init(), LCDColor: .constant(.green), statusLEDColor: .constant(.green))
     }
 }

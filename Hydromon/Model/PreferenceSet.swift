@@ -57,12 +57,12 @@ struct PreferenceSet: Codable {
     var localNetworkPassword: String
     
     init() {
-        LCDStandbyMessage = "go vegan or die!" // CHANGE BACK TO ""
+        LCDStandbyMessage = ""
         LCDAlertMessage = ""
-        LCDStandbyColor = .init(red: 0, green: 255, blue: 0)
-        LCDAlertColor = .init(red: 0, green: 0, blue: 0)
-        LEDStandbyColor = .init(red: 0, green: 255, blue: 0)
-        LEDAlertColor = .init(red: 0, green: 0, blue: 0)
+        LCDStandbyColor = .init(red: 255, green: 255, blue: 255)
+        LCDAlertColor = .init(red: 255, green: 255, blue: 255)
+        LEDStandbyColor = .init(red: 255, green: 255, blue: 255)
+        LEDAlertColor = .init(red: 255, green: 255, blue: 255)
         standbyTimeout = 0
         alertTimeout = 0
         alertDelay = 0

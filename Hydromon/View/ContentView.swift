@@ -36,27 +36,9 @@ struct ContentView: View {
                     }
                     .padding(.leading)
                     if viewModel.connected {
-                        HydromonStatusView(viewModel: .init(), LCDColor: .constant(.green), statusLEDColor: .constant(.green))
+                        HydromonStatusView(viewModel: .init(), LCD: $viewModel.preferences.LCDStandbyColor, statusLED: $viewModel.preferences.LEDStandbyColor)
                         // Controls
-                        VStack(alignment: .leading) {
-                            HStack {
-                                NavigationLink {
-                                    CustomColorPicker(component: .LCD, mode: .standby) { rgb in
-                                        self.viewModel.updatePreference(.LCDStandbyColor, value: rgb)
-                                    }
-                                    .navigationBarBackButtonHidden()
-                                } label: {
-                                    IndicatorButton(title: "LCD STANDBY", rgb: $viewModel.preferences.LCDStandbyColor)
-                                }
-                                //colorPickerButton(title: "LED STANDBY")
-                            }
-                            HStack {
-                                //colorPickerButton(title: "LCD REMINDER")
-                                //colorPickerButton(title: "LED REMINDER")
-                            }
-                            .padding(.bottom, 16)
-                            textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
-                        }
+                        controls
                     } else {
                         Spacer()
                         ConnectionProblemView {
@@ -70,6 +52,55 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.testConnection()
+        }
+    }
+    
+    private var controls: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            // COLORS
+            // LCD
+            HStack {
+                // STANDBY
+                NavigationLink {
+                    CustomColorPicker(component: .LCD, mode: .standby) { rgb in
+                        self.viewModel.updatePreference(.LCDStandbyColor, value: rgb)
+                    }
+                    .navigationBarBackButtonHidden()
+                } label: {
+                    IndicatorButton(title: "LCD STANDBY", rgb: $viewModel.preferences.LCDStandbyColor)
+                }
+                // ALERT
+                NavigationLink {
+                    CustomColorPicker(component: .LCD, mode: .alert) { rgb in
+                        self.viewModel.updatePreference(.LCDAlertColor, value: rgb)
+                    }
+                    .navigationBarBackButtonHidden()
+                } label: {
+                    IndicatorButton(title: "LCD ALERT", rgb: $viewModel.preferences.LCDAlertColor)
+                }
+            }
+            // STATUS LED
+            HStack {
+                // STANDBY
+                NavigationLink {
+                    CustomColorPicker(component: .LED, mode: .standby) { rgb in
+                        self.viewModel.updatePreference(.LEDStandbyColor, value: rgb)
+                    }
+                    .navigationBarBackButtonHidden()
+                } label: {
+                    IndicatorButton(title: "LED STANDBY", rgb: $viewModel.preferences.LEDStandbyColor)
+                }
+                // ALERT
+                NavigationLink {
+                    CustomColorPicker(component: .LED, mode: .alert) { rgb in
+                        self.viewModel.updatePreference(.LEDAlertColor, value: rgb)
+                    }
+                    .navigationBarBackButtonHidden()
+                } label: {
+                    IndicatorButton(title: "LED ALERT", rgb: $viewModel.preferences.LEDAlertColor)
+                }
+            }
+            textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
         }
     }
     
