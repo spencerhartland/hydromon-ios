@@ -27,31 +27,31 @@ extension ContentView {
         func updatePreference(_ preference: PreferenceSet.PreferenceKey, value: Any) {
             switch preference {
             case .LCDStandbyMessage:
-                self.preferences.LCDStandbyMessage = value as! String
+                self.preferences.LCDStandbyMessage = value as? String ?? ""
             case .LCDAlertMessage:
-                self.preferences.LCDAlertMessage = value as! String
+                self.preferences.LCDAlertMessage = value as? String ?? ""
             case .LCDStandbyColor:
-                self.preferences.LCDStandbyColor = value as! RGB
+                self.preferences.LCDStandbyColor = value as? RGB ?? RGB(red: 255, green: 255, blue: 255)
             case .LCDAlertColor:
-                self.preferences.LCDAlertColor = value as! RGB
+                self.preferences.LCDAlertColor = value as? RGB ?? RGB(red: 255, green: 255, blue: 255)
             case .LEDStandbyColor:
-                self.preferences.LEDStandbyColor = value as! RGB
+                self.preferences.LEDStandbyColor = value as? RGB ?? RGB(red: 255, green: 255, blue: 255)
             case .LEDAlertColor:
-                self.preferences.LEDAlertColor = value as! RGB
+                self.preferences.LEDAlertColor = value as? RGB ?? RGB(red: 255, green: 255, blue: 255)
             case .standbyTimeout:
-                self.preferences.standbyTimeout = value as! Int
+                self.preferences.standbyTimeout = value as? Int ?? 0
             case .alertTimeout:
-                self.preferences.alertTimeout = value as! Int
+                self.preferences.alertTimeout = value as? Int ?? 0
             case .alertDelay:
-                self.preferences.alertDelay = value as! Int
+                self.preferences.alertDelay = value as? Int ?? 0
             case .OLEDMaxBrightness:
-                self.preferences.OLEDMaxBrightness = value as! Int
+                self.preferences.OLEDMaxBrightness = value as? Int ?? 0
             case .sipSize:
-                self.preferences.sipSize = value as! Int
+                self.preferences.sipSize = value as? Int ?? 0
             case .localNetworkSSID:
-                self.preferences.localNetworkSSID = value as! String
+                self.preferences.localNetworkSSID = value as? String ?? ""
             case .localNetworkPassword:
-                self.preferences.localNetworkPassword = value as! String
+                self.preferences.localNetworkPassword = value as? String ?? ""
             }
             return
         }
