@@ -10,6 +10,8 @@ import SwiftUI
 struct CustomColorPicker: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    private let colorPickerColorWellImageName = "color-picker_color-well"
+    private let pointerSymbolName = "play.fill"
     private let colorPickerRGBEntryOutlineImageName = "color-picker_rgb-entry-outline"
     private let subtitleTemplate = "Choose the %@'s %@ color by sliding the sliders."
     private let largeButtonBackgroundImageName = "large-button-bg"
@@ -18,9 +20,9 @@ struct CustomColorPicker: View {
     
     let component: Hydromon.Component
     let mode: Hydromon.Mode
+    let action: (RGB) -> Void
     
     @State private var rgb = RGB(red: 255, green: 255, blue: 255)
-    let action: (RGB) -> Void
     
     var body: some View {
         VStack(spacing: 24) {
@@ -31,8 +33,8 @@ struct CustomColorPicker: View {
                     .font(Fonts.semibold(size: 10))
                     .multilineTextAlignment(.center)
             }
-            ColorSelectionView(component: component, rgb: $rgb)
-            rgbEntry
+            colorSelectionPreview
+            rgbValues
             VStack(spacing: 24) {
                 ColorPickerBar(color: Color(red: 1, green: 0, blue: 0)) { value in
                     self.rgb.red = Int(value)
@@ -70,7 +72,7 @@ struct CustomColorPicker: View {
         .foregroundColor(Colors.primary)
     }
     
-    var rgbEntry: some View {
+    private var rgbValues: some View {
         ZStack {
             Image(colorPickerRGBEntryOutlineImageName)
                 .resizable()
@@ -96,17 +98,8 @@ struct CustomColorPicker: View {
         .frame(width: 170)
         .foregroundColor(Colors.secondary)
     }
-}
-
-private struct ColorSelectionView: View {
-    private let colorPickerColorWellImageName = "color-picker_color-well"
-    private let pointerSymbolName = "play.fill"
     
-    let component: Hydromon.Component
-    
-    @Binding var rgb: RGB
-    
-    var body: some View {
+    private var colorSelectionPreview: some View {
         ZStack {
             Image(Hydromon.Icon.bottleImageName)
                 .resizable()
@@ -134,7 +127,7 @@ private struct ColorSelectionView: View {
         .foregroundColor(rgb.color())
     }
     
-    var lcdDetailColorWell: some View {
+    private var lcdDetailColorWell: some View {
         HStack(spacing: 0) {
             Color.clear
             VStack(alignment: .trailing) {
@@ -157,7 +150,7 @@ private struct ColorSelectionView: View {
         }
     }
     
-    var ledDetailColorWell: some View {
+    private var ledDetailColorWell: some View {
         HStack(spacing: 0) {
             Color.clear
                 .frame(width: 228)
