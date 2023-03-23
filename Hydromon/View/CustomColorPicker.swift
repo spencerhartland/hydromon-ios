@@ -47,25 +47,9 @@ struct CustomColorPicker: View {
                 }
             }
             Spacer()
-            Button {
+            LargeButton(title: String(format: buttonTextTemplate, mode.rawValue), color: rgb.color()) {
                 action(self.rgb)
                 self.presentationMode.wrappedValue.dismiss()
-            } label: {
-                ZStack {
-                    Image(largeButtonBackgroundImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Colors.secondaryBackground)
-                    Text(String(format: buttonTextTemplate, mode.rawValue).uppercased())
-                        .font(Fonts.semibold(size: 18))
-                        .foregroundColor(Colors.primary)
-                        .glow(Colors.primary, intensity: 0.5)
-                    Image(largeButtonGradientImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(rgb.color())
-                }
-                .frame(height: 64)
             }
         }
         .padding(.horizontal, 16)

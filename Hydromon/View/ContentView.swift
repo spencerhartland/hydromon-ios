@@ -100,7 +100,12 @@ struct ContentView: View {
                     IndicatorButton(title: "LED ALERT", rgb: $viewModel.preferences.LEDAlertColor)
                 }
             }
-            textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
+            NavigationLink {
+                PreferenceTextfieldView(title: lcdStandbyMessgageControlTitle, preference: $viewModel.preferences.LCDStandbyMessage)
+                    .navigationBarBackButtonHidden()
+            } label: {
+                textfieldDisclosure(title: lcdStandbyMessgageControlTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
+            }
         }
     }
     
