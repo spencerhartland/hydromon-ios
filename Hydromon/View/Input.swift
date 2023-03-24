@@ -36,28 +36,32 @@ struct PreferenceTextfieldView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Image(textfieldBackgroundImageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Colors.secondaryBackground)
-                    .overlay {
-                        HStack {
-                            TextField(title, text: $viewModel.text)
-                                .font(Fonts.medium(size: 16))
-                                .foregroundColor(Colors.primary)
-                                .padding(.leading)
-                            Image(xmarkButtonImageName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(Colors.secondary)
-                                .padding()
-                                .onTapGesture {
-                                    self.viewModel.text = ""
-                                }
+            VStack(alignment: .trailing) {
+                ZStack {
+                    Image(textfieldBackgroundImageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(Colors.secondaryBackground)
+                        .overlay {
+                            HStack {
+                                TextField(title, text: $viewModel.text)
+                                    .font(Fonts.medium(size: 16))
+                                    .foregroundColor(Colors.primary)
+                                    .padding(.leading)
+                                Image(xmarkButtonImageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(Colors.secondary)
+                                    .padding()
+                                    .onTapGesture {
+                                        self.viewModel.text = ""
+                                    }
+                            }
                         }
-                    }
+                }
+                CharacterCountDisplay(currentCharacterCount: self.viewModel.text.count, maxCharacterCount: self.viewModel.maxCharacterCount)
             }
+            .padding(.top, 32)
             .padding(.horizontal, 8)
             Spacer()
             LargeButton(title: (viewModel.text.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
@@ -89,29 +93,33 @@ struct PreferenceNumberEntryView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Image(textfieldBackgroundImageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(Colors.secondaryBackground)
-                    .overlay {
-                        HStack {
-                            TextField(title, text: $viewModel.text)
-                                .keyboardType(.numberPad)
-                                .font(Fonts.medium(size: 16))
-                                .foregroundColor(Colors.primary)
-                                .padding(.leading)
-                            Image(xmarkButtonImageName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(Colors.secondary)
-                                .padding()
-                                .onTapGesture {
-                                    self.viewModel.text = ""
-                                }
+            VStack(alignment: .trailing) {
+                ZStack {
+                    Image(textfieldBackgroundImageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(Colors.secondaryBackground)
+                        .overlay {
+                            HStack {
+                                TextField(title, text: $viewModel.text)
+                                    .keyboardType(.numberPad)
+                                    .font(Fonts.medium(size: 16))
+                                    .foregroundColor(Colors.primary)
+                                    .padding(.leading)
+                                Image(xmarkButtonImageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(Colors.secondary)
+                                    .padding()
+                                    .onTapGesture {
+                                        self.viewModel.text = ""
+                                    }
+                            }
                         }
-                    }
+                }
+                CharacterCountDisplay(currentCharacterCount: self.viewModel.text.count, maxCharacterCount: self.viewModel.maxCharacterCount)
             }
+            .padding(.top, 32)
             .padding(.horizontal, 8)
             Spacer()
             LargeButton(title: (viewModel.text.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
@@ -133,8 +141,58 @@ struct PreferenceNumberEntryView: View {
     }
 }
 
+fileprivate struct CharacterCountDisplay: View {
+    private let characterCountBarImageName = "control_color-picker-bar"
+    private let characterCountTextTemplate = "%d / %d"
+    
+    private let currentCharacterCount: Int
+    private let maxCharacterCount: Int
+    private let gradient: LinearGradient
+    
+    init(currentCharacterCount: Int, maxCharacterCount: Int) {
+        self.currentCharacterCount = currentCharacterCount
+        self.maxCharacterCount = maxCharacterCount
+        
+        let location = CGFloat(currentCharacterCount) / CGFloat(maxCharacterCount)
+        self.gradient = LinearGradient(stops: [
+            .init(color: (location >= 0.85 ? .red : location >= 0.75 ? .orange : Colors.primary), location: location),
+            .init(color: Colors.secondaryBackground, location: location + (location > 0.0 ? 0.05 : 0.0))
+        ], startPoint: .leading, endPoint: .trailing)
+    }
+    
+    var body: some View {
+        HStack {
+            Image(characterCountBarImageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .overlay {
+                    gradient
+                        .mask {
+                            Image(characterCountBarImageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                }
+                .background {
+                    gradient
+                        .mask {
+                            Image(characterCountBarImageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                        .blur(radius: 8)
+                }
+                .frame(width: 64)
+            Text(String(format: characterCountTextTemplate, self.currentCharacterCount, self.maxCharacterCount))
+                .font(Fonts.medium(size: 12))
+                .foregroundColor(Colors.primary)
+                .frame(width: 32)
+        }
+    }
+}
+
 struct Input_Previews: PreviewProvider {
     static var previews: some View {
-        PreferenceTextfieldView(title: "Alert Timeout", preference: .constant(""))
+        PreferenceTextfieldView(title: "LCD Standby Message", preference: .constant(""))
     }
 }
