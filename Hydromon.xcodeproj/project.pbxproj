@@ -34,6 +34,7 @@
 		00CEE1DD29C9BB0900415001 /* IndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE1DC29C9BB0900415001 /* IndicatorButton.swift */; };
 		00CEE1DF29CC4DD600415001 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE1DE29CC4DD600415001 /* Input.swift */; };
 		00CEE1E129CC59F800415001 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE1E029CC59F800415001 /* LargeButton.swift */; };
+		00CEE1E329CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CEE1E229CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift */; };
 		00F8F5962989CDD00082D0AF /* HydromonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5952989CDD00082D0AF /* HydromonApp.swift */; };
 		00F8F5982989CDD00082D0AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5972989CDD00082D0AF /* ContentView.swift */; };
 		00F8F59E2989CDD20082D0AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00F8F59D2989CDD20082D0AF /* Preview Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		00CEE1DC29C9BB0900415001 /* IndicatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorButton.swift; sourceTree = "<group>"; };
 		00CEE1DE29CC4DD600415001 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		00CEE1E029CC59F800415001 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		00CEE1E229CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceTextfieldView-ViewModel.swift"; sourceTree = "<group>"; };
 		00F8F5922989CDD00082D0AF /* Hydromon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydromon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F8F5952989CDD00082D0AF /* HydromonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonApp.swift; sourceTree = "<group>"; };
 		00F8F5972989CDD00082D0AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				00020B8B2994DFB900867F15 /* PreferenceSet.swift */,
 				00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */,
 				00472FBD29C1593200D5B105 /* HydromonStatusView-ViewModel.swift */,
+				00CEE1E229CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				0070942629C1AB1B007801A3 /* CustomColorPicker.swift in Sources */,
 				00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */,
 				00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */,
+				00CEE1E329CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift in Sources */,
 				00B9DBAA299CD71B00F0528C /* AppConstants.swift in Sources */,
 				008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */,
 				008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */,

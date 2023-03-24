@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-// Manages character count of input for both `PreferenceTextfieldView` and `PreferenceNumberEntryView`.
-@MainActor fileprivate class ViewModel: ObservableObject {
-    // 16x2 LCD, so limit LCD message to 16.
-    // Could be increased in the future if scrolling marquee text is implemented in Hydromon firmware.
-    let maxCharacterCount = 16
-    @Published var text = "" {
-        didSet {
-            if text.count > maxCharacterCount && oldValue.count <= maxCharacterCount {
-                self.text = oldValue
-            }
-        }
-    }
-}
-
 struct PreferenceTextfieldView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -86,9 +72,10 @@ struct PreferenceNumberEntryView: View {
     private let cancelText = "Cancel"
     private let buttonTextTemplate = "Set %@"
     
-    @StateObject private var viewModel = ViewModel()
+    @State private var input = ""
     
     let title: String
+    let footer: String
     @Binding var preference: Int
     
     var body: some View {
@@ -101,7 +88,7 @@ struct PreferenceNumberEntryView: View {
                         .foregroundColor(Colors.secondaryBackground)
                         .overlay {
                             HStack {
-                                TextField(title, text: $viewModel.text)
+                                TextField(title, text: $input)
                                     .keyboardType(.numberPad)
                                     .font(Fonts.medium(size: 16))
                                     .foregroundColor(Colors.primary)
@@ -112,19 +99,21 @@ struct PreferenceNumberEntryView: View {
                                     .foregroundColor(Colors.secondary)
                                     .padding()
                                     .onTapGesture {
-                                        self.viewModel.text = ""
+                                        self.input = ""
                                     }
                             }
                         }
                 }
-                CharacterCountDisplay(currentCharacterCount: self.viewModel.text.count, maxCharacterCount: self.viewModel.maxCharacterCount)
+                Text(footer)
+                    .font(Fonts.regular(size: 8))
+                    .foregroundColor(Colors.secondary)
             }
             .padding(.top, 32)
             .padding(.horizontal, 8)
             Spacer()
-            LargeButton(title: (viewModel.text.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
-                if !viewModel.text.isEmpty {
-                    guard let entry = Int(self.viewModel.text) else {
+            LargeButton(title: (input.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
+                if !input.isEmpty {
+                    guard let entry = Int(self.input) else {
                         // TODO: Add some sort of error UI
                         print("Please enter a number.")
                         return
@@ -193,6 +182,6 @@ fileprivate struct CharacterCountDisplay: View {
 
 struct Input_Previews: PreviewProvider {
     static var previews: some View {
-        PreferenceTextfieldView(title: "LCD Standby Message", preference: .constant(""))
+        PreferenceNumberEntryView(title: "Alert Timeout", footer: "The duration of a drink reminder alert in seconds.", preference: .constant(0))
     }
 }
