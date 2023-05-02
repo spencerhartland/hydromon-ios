@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00020B8B2994DFB900867F15 /* PreferenceSet.swift */; };
 		00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */; };
+		001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74E92A019AFB003EA741 /* BluetoothManager.swift */; };
 		002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */; };
 		002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */; };
 		002285CD299CDFF8008C288C /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */; };
@@ -47,6 +48,7 @@
 		00020B8B2994DFB900867F15 /* PreferenceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceSet.swift; sourceTree = "<group>"; };
 		000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
 		00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySOCView.swift; sourceTree = "<group>"; };
+		001F74E92A019AFB003EA741 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		00472FB929C13CEB00D5B105 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001F74EC2A019B5C003EA741 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				001F74E92A019AFB003EA741 /* BluetoothManager.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
 		00472FB729C13C0B00D5B105 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +199,7 @@
 				00F8F5952989CDD00082D0AF /* HydromonApp.swift */,
 				00CEE1D729C4227700415001 /* Common */,
 				00B9DBAB299CDAD600F0528C /* Fonts */,
+				001F74EC2A019B5C003EA741 /* Bluetooth */,
 				00472FB829C13C2500D5B105 /* Network */,
 				00472FB729C13C0B00D5B105 /* Model */,
 				008C68EC29B5C07C00B0E6B0 /* View */,
@@ -288,6 +299,7 @@
 			files = (
 				008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */,
 				008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */,
+				001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */,
 				008C062929B5CB9600A94C13 /* HydromonLogoView.swift in Sources */,
 				00F8F5982989CDD00082D0AF /* ContentView.swift in Sources */,
 				00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */,
