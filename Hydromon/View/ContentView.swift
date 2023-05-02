@@ -57,6 +57,7 @@ struct ContentView: View {
                         ConnectionProblemView {
                             viewModel.testConnection()
                         }
+                        .padding(16)
                         Spacer()
                     }
                 }
@@ -64,6 +65,11 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.testConnection()
+        }
+        .onChange(of: viewModel.connected) { connected in
+            if connected {
+                viewModel.fetchPreferences()
+            }
         }
     }
     

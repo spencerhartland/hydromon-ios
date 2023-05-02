@@ -11,13 +11,13 @@ extension ContentView {
     @MainActor class ViewModel: ObservableObject {
         private let httpRequestHandler = RequestHandler()
         
-        @Published var connected = true // CHANGE to false
+        @Published var connected = false
         @Published var preferences = PreferenceSet()
         
         func testConnection() {
             httpRequestHandler.testConnection { success, response in
                 if !success {
-                    print(response)
+                    self.connected = false
                     return
                 }
                 self.connected = true
@@ -53,7 +53,38 @@ extension ContentView {
             case .localNetworkPassword:
                 self.preferences.localNetworkPassword = value as? String ?? ""
             }
+            uploadPreferences()
             return
+        }
+        
+        func fetchPreferences() {
+            httpRequestHandler.getPreferences { success, response in
+                if !success {
+                    print("Failed to fetch preferences.")
+                    return
+                }
+                guard let jsonData = response.data(using: .utf8) else {
+                    print("Failed to get data from server response.")
+                    return
+                }
+                do {
+                    self.preferences = try JSONDecoder().decode(PreferenceSet.self, from: jsonData)
+                } catch {
+                    print("Failed to decode preferences from server repsonse: \(error)")
+                }
+            }
+        }
+        
+        private func uploadPreferences() {
+            // Encode PreferenceSet to JSON
+            do {
+                let jsonData = try JSONEncoder().encode(self.preferences)
+                httpRequestHandler.setPreferences(data: jsonData) { success, response in
+                    print("Success: \(success)")
+                }
+            } catch {
+                print("Error encoding preferences: \(error)")
+            }
         }
     }
 }

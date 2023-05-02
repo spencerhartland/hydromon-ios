@@ -19,16 +19,16 @@ public struct Request {
         case POST = "POST"
     }
     
-    private static let baseURL = "http://172.20.10.11"
-//    private static let connectionTestPathComponent = "/connectionTest"
-//    private static let getPrefsPathComponent = "/getPreferences"
-//    private static let setPrefsPathComponent = "/setPreferences"
-//    private static let httpGETMethod = "GET"
+    private static let baseURL = "http://192.168.4.1"
+    private static let headers = [
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    ]
     
     private static func requestURL(path: String) -> URL? {
         let urlString = baseURL + path
         guard let url = URL(string: urlString) else {
-            print("Unable to create URL from FBRequest.baseURL")
+            print("Unable to create URL from Request.baseURL")
             return nil
         }
         return url
@@ -41,36 +41,17 @@ public struct Request {
         }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        for (key, value) in headers {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
         return request
     }
-    
-    // TODO: DELETE once createRequest is tested -
-//    fileprivate static func connectionTestRequest() -> URLRequest? {
-//        guard let url = requestURL(path: Request.connectionTestPathComponent) else {
-//            print("Error while unwrapping url from requestURL()")
-//            return nil
-//        }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = Request.httpGETMethod
-//        return request
-//    }
-//
-//    fileprivate static func getPreferencesRequest() -> URLRequest? {
-//        guard let url = requestURL(path: Request.getPrefsPathComponent) else {
-//            print("Error while unwrapping url from requestURL()")
-//            return nil
-//        }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = Request.httpGETMethod
-//        return request
-//    }
-    // MARK: -
 }
 
 
 public struct RequestHandler {
     private func handle(_ request: URLRequest, completion: @escaping (Bool, String) -> Void) {
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let httpResponse = response as? HTTPURLResponse,
                   (200 ..< 300).contains(httpResponse.statusCode),
@@ -81,7 +62,9 @@ public struct RequestHandler {
             }
             let decodedResponse = String(decoding: responseData, as: UTF8.self)
             completion(true, decodedResponse)
-        }.resume()
+        }
+        
+        task.resume()
     }
     
     public func testConnection(completion: @escaping (Bool, String) -> Void) {
@@ -97,6 +80,16 @@ public struct RequestHandler {
             completion(false, "There was an error getting a response from the server.")
             return
         }
+        handle(request, completion: completion)
+    }
+    
+    public func setPreferences(data: Data, completion: @escaping (Bool, String) -> Void) {
+        guard var request = Request.createRequest(type: .preferences, method: .POST) else {
+            completion(false, "There was an error getting a response from the server.")
+            return
+        }
+        request.httpBody = data
+        request.timeoutInterval = 120
         handle(request, completion: completion)
     }
     

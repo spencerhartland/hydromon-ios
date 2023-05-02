@@ -24,8 +24,6 @@ struct ConnectionProblemView: View {
         self.action = action
     }
     
-    @State private var buttonGlowIntensity: Double = 0.5
-    
     var body: some View {
         VStack {
             // Warning header
@@ -68,12 +66,7 @@ struct ConnectionProblemView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 144)
                             .foregroundColor(Colors.primary)
-                            .glow(Colors.primary, intensity: buttonGlowIntensity)
-                            .onAppear {
-                                withAnimation(.linear(duration: 1).repeatForever(autoreverses: true)) {
-                                    buttonGlowIntensity = 0.85
-                                }
-                            }
+                            .glow(Colors.primary, intensity: 0.75)
                         Text(buttonText)
                             .foregroundColor(Colors.background)
                             .font(Fonts.semibold(size: 14))
