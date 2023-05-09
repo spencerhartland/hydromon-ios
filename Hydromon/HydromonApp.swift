@@ -11,9 +11,11 @@ import SwiftUI
 struct HydromonApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .background { Colors.background.ignoresSafeArea() }
-                .preferredColorScheme(.dark)
+//            ContentView()
+//                .background { Colors.background.ignoresSafeArea() }
+//                .preferredColorScheme(.dark)
+            
+            BluetoothTestView()
         }
     }
 }

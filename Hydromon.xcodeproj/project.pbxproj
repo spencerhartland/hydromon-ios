@@ -10,6 +10,8 @@
 		00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00020B8B2994DFB900867F15 /* PreferenceSet.swift */; };
 		00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */; };
 		001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74E92A019AFB003EA741 /* BluetoothManager.swift */; };
+		001F74EE2A01EB8A003EA741 /* BluetoothTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74ED2A01EB8A003EA741 /* BluetoothTestView.swift */; };
+		001F74F02A01F8CE003EA741 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74EF2A01F8CE003EA741 /* Peripheral.swift */; };
 		002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */; };
 		002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */; };
 		002285CD299CDFF8008C288C /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */; };
@@ -49,6 +51,8 @@
 		000C2DCF2997EA7E00C4D319 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
 		00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySOCView.swift; sourceTree = "<group>"; };
 		001F74E92A019AFB003EA741 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		001F74ED2A01EB8A003EA741 /* BluetoothTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTestView.swift; sourceTree = "<group>"; };
+		001F74EF2A01F8CE003EA741 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		00472FB929C13CEB00D5B105 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				001F74E92A019AFB003EA741 /* BluetoothManager.swift */,
+				001F74EF2A01F8CE003EA741 /* Peripheral.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				00CEE1DC29C9BB0900415001 /* IndicatorButton.swift */,
 				00CEE1DE29CC4DD600415001 /* Input.swift */,
 				00CEE1E029CC59F800415001 /* LargeButton.swift */,
+				001F74ED2A01EB8A003EA741 /* BluetoothTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,12 +311,14 @@
 				00020B8C2994DFB900867F15 /* PreferenceSet.swift in Sources */,
 				00F8F5962989CDD00082D0AF /* HydromonApp.swift in Sources */,
 				008C68EE29B5C19300B0E6B0 /* ConnectionStatusView.swift in Sources */,
+				001F74EE2A01EB8A003EA741 /* BluetoothTestView.swift in Sources */,
 				008DFCD8299576E000F82A87 /* DeviceModelView.swift in Sources */,
 				00CEE1DF29CC4DD600415001 /* Input.swift in Sources */,
 				00472FB529C12EAC00D5B105 /* ContentView-ViewModel.swift in Sources */,
 				00CEE1DB29C8623200415001 /* Presentable.swift in Sources */,
 				00CEE1E129CC59F800415001 /* LargeButton.swift in Sources */,
 				008C68E729B36F4400B0E6B0 /* MarqueeTextView.swift in Sources */,
+				001F74F02A01F8CE003EA741 /* Peripheral.swift in Sources */,
 				0070942629C1AB1B007801A3 /* CustomColorPicker.swift in Sources */,
 				00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */,
 				00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */,
