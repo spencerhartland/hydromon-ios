@@ -21,6 +21,7 @@ struct BluetoothTestView: View {
                 
                 List(bluetoothManager.peripherals) { peripheral in
                     Button {
+                        bluetoothManager.stopScanning()
                         peripheral.peripheral.delegate = bluetoothManager
                         bluetoothManager.connect(peripheral: peripheral.peripheral)
                     } label: {
