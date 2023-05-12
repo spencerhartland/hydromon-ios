@@ -11,13 +11,15 @@ import CoreBluetooth
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let hydromonDeviceName = "hydromon"
     
-    @Published var centralManager: CBCentralManager!
-    @Published var peripheral: CBPeripheral!
+    private var centralManager: CBCentralManager!
+    private var peripheral: CBPeripheral!
     
+    /// A boolean vaue indicating whether or not Bluetooth is switched on.
     @Published var isSwitchedOn = false
+    /// A list of `Peripheral`s discovered by this device. Useful for displaying a list of discovered peripherals for the user to select.
     @Published var peripherals = [Peripheral]()
+    /// A boolean value indicating whether or not this device is connected to a Hydromon device.
     @Published var isConnected: Bool = false
-    @Published var batteryLevel: Int?
     
     override init() {
         super.init()
