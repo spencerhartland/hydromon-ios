@@ -9,9 +9,6 @@ import Foundation
 import CoreBluetooth
 
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    private let devInfoServiceUUID = CBUUID(string: "180A")
-    private let modelNumUUID = CBUUID(string: "2A24")
-    private let prefsJSONUUID = CBUUID(string: "29794ca0-0950-40a9-a415-a51c48e42a65")
     private let hydromonDeviceName = "hydromon"
     
     @Published var centralManager: CBCentralManager!
@@ -102,21 +99,25 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
         
         for characteristic in service.characteristics ?? [] {
-            print("Discovered characteristic: \(characteristic)")
-            // Do stuff with characteristics: read, write, etc.
+            if characteristic.properties.contains(.read) {
+                print("Attempting to read value for characteristic: \(characteristic.uuid)")
+                peripheral.readValue(for: characteristic)
+            }
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-            if let error = error {
-                print("Error reading value for characteristic: \(error.localizedDescription)")
-                return
-            }
-            
-            if let data = characteristic.value {
-                let dataString = String(data: data, encoding: .utf8) ?? ""
-                print("New value: \(dataString)")
-                // Do something with the new value
+        if let error = error {
+            print("Error reading value for characteristic: \(error.localizedDescription)")
+            return
+        }
+        
+        if let data = characteristic.value {
+            if let value = String(data: data, encoding: .utf8) {
+                print("Value: \(value)")
+            } else {
+                print("There was an error casting the characteristic's value as a String.")
             }
         }
+    }
 }
