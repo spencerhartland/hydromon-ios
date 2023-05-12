@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+let debug = true
+
 struct Colors {
     /// Electric Pink. A very bright purplish pink.
     static let accent = Color(red: 17/255, green: 235/255, blue: 247/255)

@@ -11,20 +11,54 @@ import CoreBluetooth
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let hydromonDeviceName = "hydromon"
     
-    private var centralManager: CBCentralManager!
-    private var peripheral: CBPeripheral!
-    
+    @Published var centralManager: CBCentralManager!
+    /// The `CBPeripheral` this device is connected to (a Hydromon).
+    @Published var peripheral: CBPeripheral!
     /// A boolean vaue indicating whether or not Bluetooth is switched on.
     @Published var isSwitchedOn = false
     /// A list of `Peripheral`s discovered by this device. Useful for displaying a list of discovered peripherals for the user to select.
     @Published var peripherals = [Peripheral]()
     /// A boolean value indicating whether or not this device is connected to a Hydromon device.
     @Published var isConnected: Bool = false
+    /// A dictionary of Hydromon preferences whose keys are preference UUIDs and values are preference values.
+    @Published var preferences: [CBUUID: String] = [:]
     
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
+    
+    // MARK: - BluetoothManager
+    
+    /// Tells the central manager to begin scanning for peripherals.
+    func startScanning() {
+        if isSwitchedOn {
+            centralManager.scanForPeripherals(withServices: nil, options: nil)
+        }
+    }
+    
+    /// Tells the central manager to stop scanning for peripherals. This should be called once the desired peripheral has been discovered.
+    func stopScanning() {
+        centralManager.stopScan()
+    }
+    
+    /// Tells the central manager to attempt to connect to the specified peripheral.
+    func connect(peripheral: CBPeripheral) {
+        self.peripheral = peripheral
+        self.peripheral.delegate = self
+        centralManager.connect(peripheral, options: nil)
+    }
+    
+    /// Writes the provided value to the specified characteristic.
+    func write(_ value: String, for characteristic: CBCharacteristic) {
+        if let data = value.data(using: .utf8) {
+            self.peripheral.writeValue(data, for: characteristic, type: .withResponse)
+        } else {
+            print("Error getting data from string.")
+        }
+    }
+    
+    // MARK: - CBCentralManagerDelegate
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
@@ -34,31 +68,6 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
     }
     
-    func startScanning() {
-        if isSwitchedOn {
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-        }
-    }
-    
-    func stopScanning() {
-        centralManager.stopScan()
-    }
-    
-    func connect(peripheral: CBPeripheral) {
-        self.peripheral = peripheral
-        self.peripheral.delegate = self
-        centralManager.connect(peripheral, options: nil)
-    }
-    
-    func write(_ value: String, for characteristic: CBCharacteristic) {
-        if let data = value.data(using: .utf8) {
-            self.peripheral.writeValue(data, for: characteristic, type: .withResponse)
-        } else {
-            print("Error getting data from string.")
-        }
-    }
-    
-    // CBCentralManagerDelegate
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let newPeripheral = Peripheral(id: UUID(), peripheral: peripheral)
         if let deviceName = peripheral.name {
@@ -70,7 +79,8 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if peripheral == self.peripheral {
-            print("Connected to your Hydromon")
+            if debug { print("Connected to your Hydromon") }
+            self.isConnected = true
             peripheral.discoverServices(nil)
         }
     }
@@ -79,7 +89,8 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         print("Failed to connect to \(peripheral.name ?? "unknown"): \(error?.localizedDescription ?? "unknown error")")
     }
     
-    // CBPeripheralDelegate
+    // MARK: - CBPeripheralDelegate
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
             print("Error discovering services: \(error.localizedDescription)")
@@ -87,7 +98,7 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
         
         if let services = peripheral.services {
-            print("Number of services \(services.count)")
+            if debug { print("Number of services \(services.count)") }
             for service in services {
                 peripheral.discoverCharacteristics(nil, for: service)
             }
@@ -102,7 +113,7 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         
         for characteristic in service.characteristics ?? [] {
             if characteristic.properties.contains(.read) {
-                print("Attempting to read value for characteristic: \(characteristic.uuid)")
+                if debug { print("Attempting to read value for characteristic: \(characteristic.uuid)") }
                 peripheral.readValue(for: characteristic)
             }
         }
@@ -116,7 +127,8 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         
         if let data = characteristic.value {
             if let value = String(data: data, encoding: .utf8) {
-                print("Value: \(value)")
+                if debug { print("Value: \(value)") }
+                preferences[characteristic.uuid] = value
             } else {
                 print("There was an error casting the characteristic's value as a String.")
             }
