@@ -12,6 +12,7 @@
 		001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74E92A019AFB003EA741 /* BluetoothManager.swift */; };
 		001F74EE2A01EB8A003EA741 /* BluetoothTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74ED2A01EB8A003EA741 /* BluetoothTestView.swift */; };
 		001F74F02A01F8CE003EA741 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74EF2A01F8CE003EA741 /* Peripheral.swift */; };
+		001F74F42A0DB8B0003EA741 /* HydromonServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74F32A0DB8B0003EA741 /* HydromonServices.swift */; };
 		002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */; };
 		002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */; };
 		002285CD299CDFF8008C288C /* Rajdhani-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAD299CDAF100F0528C /* Rajdhani-Regular.ttf */; };
@@ -53,6 +54,7 @@
 		001F74E92A019AFB003EA741 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		001F74ED2A01EB8A003EA741 /* BluetoothTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTestView.swift; sourceTree = "<group>"; };
 		001F74EF2A01F8CE003EA741 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		001F74F32A0DB8B0003EA741 /* HydromonServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonServices.swift; sourceTree = "<group>"; };
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00472FB429C12EAB00D5B105 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		00472FB929C13CEB00D5B105 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				001F74E92A019AFB003EA741 /* BluetoothManager.swift */,
 				001F74EF2A01F8CE003EA741 /* Peripheral.swift */,
+				001F74F32A0DB8B0003EA741 /* HydromonServices.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001F74F42A0DB8B0003EA741 /* HydromonServices.swift in Sources */,
 				008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */,
 				008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */,
 				001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */,
