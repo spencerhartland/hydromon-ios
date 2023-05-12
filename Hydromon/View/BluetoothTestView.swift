@@ -29,17 +29,17 @@ struct BluetoothTestView: View {
                     }
                 }
                 
-                if let batteryLevel = bluetoothManager.batteryLevel {
-                    Text("Battery level: \(batteryLevel)")
-                } else {
-                    Text("Battery level: –")
+                if bluetoothManager.isConnected {
+                    List(Array(bluetoothManager.preferences.keys), id: \.uuidString) { id in
+                        Text("\(id) : \(bluetoothManager.preferences[id] ?? "Unknown")")
+                    }
                 }
             } else {
                 Text("Bluetooth is not available.")
             }
         }
         .onAppear {
-            bluetoothManager.centralManager.delegate = bluetoothManager 
+            bluetoothManager.centralManager.delegate = bluetoothManager
         }
     }
 }
