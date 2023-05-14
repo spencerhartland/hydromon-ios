@@ -17,7 +17,7 @@ struct AlertPopupView<Content: View>: View {
     private let infoBarText: String
     private let primaryColor: Color
     private let secondaryColor: Color
-    private let action: () -> Void
+    private let action: (() -> Void)?
     private let content: () -> Content
     
     public init(
@@ -26,7 +26,7 @@ struct AlertPopupView<Content: View>: View {
         infoBarText: String = "",
         primaryColor: Color = Colors.primary,
         secondaryColor: Color = Colors.primary,
-        _ action: @escaping () -> Void,
+        _ action: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> Content) {
             self.headerText = headerText
             self.buttonText = buttonText
@@ -64,20 +64,22 @@ struct AlertPopupView<Content: View>: View {
             
             // Bottom bar
             HStack(alignment: .top, spacing: 4) {
-                Button {
-                    self.action()
-                } label: {
-                    ZStack {
-                        Image(buttonBackgroundImageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 144)
-                            .foregroundColor(self.secondaryColor)
-                            .glow(self.secondaryColor, intensity: 0.75)
-                        Text(buttonText)
-                            .foregroundColor(Colors.background)
-                            .font(Fonts.semibold(size: 14))
-                            .padding(.trailing, 16)
+                if let buttonAction = self.action {
+                    Button {
+                        buttonAction()
+                    } label: {
+                        ZStack {
+                            Image(buttonBackgroundImageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 144)
+                                .foregroundColor(self.secondaryColor)
+                                .glow(self.secondaryColor, intensity: 0.75)
+                            Text(buttonText)
+                                .foregroundColor(Colors.background)
+                                .font(Fonts.semibold(size: 14))
+                                .padding(.trailing, 16)
+                        }
                     }
                 }
                 HStack {
@@ -96,7 +98,7 @@ struct AlertPopupView<Content: View>: View {
         .background {
             self.primaryColor.opacity(0.25)
                 .padding(.top, 8)
-                .padding(.bottom, 36)
+                .padding(.bottom, self.action != nil ? 36 : 0)
         }
     }
 }
@@ -106,12 +108,10 @@ struct AlertPopupView_Previews: PreviewProvider {
         ZStack {
             Colors.background
                 .ignoresSafeArea()
-            AlertPopupView(headerText: "WARNING", buttonText: "TAP HERE") {
-                print("Button tapped")
-            } content: {
+            AlertPopupView(headerText: "WARNING", buttonText: "TAP HERE", content: {
                 Text("Hello, world!")
                     .foregroundColor(Colors.primary)
-            }
+            })
         }
     }
 }
