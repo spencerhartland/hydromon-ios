@@ -15,7 +15,7 @@ struct HydromonApp: App {
 //                .background { Colors.background.ignoresSafeArea() }
 //                .preferredColorScheme(.dark)
             
-            BluetoothTestView()
+            BluetoothConnectionView()
         }
     }
 }

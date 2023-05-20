@@ -13,7 +13,7 @@ struct AlertPopupView<Content: View>: View {
     private let buttonBackgroundImageName = "ButtonBackground"
     
     private let headerText: String
-    private let buttonText: String
+    private let buttonText: String?
     private let infoBarText: String
     private let primaryColor: Color
     private let secondaryColor: Color
@@ -22,7 +22,7 @@ struct AlertPopupView<Content: View>: View {
     
     public init(
         headerText: String,
-        buttonText: String,
+        buttonText: String? = nil,
         infoBarText: String = "",
         primaryColor: Color = Colors.primary,
         secondaryColor: Color = Colors.primary,
@@ -64,7 +64,8 @@ struct AlertPopupView<Content: View>: View {
             
             // Bottom bar
             HStack(alignment: .top, spacing: 4) {
-                if let buttonAction = self.action {
+                if let buttonText = self.buttonText,
+                    let buttonAction = self.action {
                     Button {
                         buttonAction()
                     } label: {
@@ -84,7 +85,7 @@ struct AlertPopupView<Content: View>: View {
                 }
                 HStack {
                     Spacer()
-                    Text(self.infoBarText)
+                    Text(infoBarText)
                         .font(Fonts.regular(size: 12))
                         .padding(.vertical, 1)
                         .padding(.trailing, 8)
@@ -99,19 +100,6 @@ struct AlertPopupView<Content: View>: View {
             self.primaryColor.opacity(0.25)
                 .padding(.top, 8)
                 .padding(.bottom, self.action != nil ? 36 : 0)
-        }
-    }
-}
-
-struct AlertPopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Colors.background
-                .ignoresSafeArea()
-            AlertPopupView(headerText: "WARNING", buttonText: "TAP HERE", content: {
-                Text("Hello, world!")
-                    .foregroundColor(Colors.primary)
-            })
         }
     }
 }
