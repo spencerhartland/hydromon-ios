@@ -16,8 +16,6 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     @Published var peripheral: CBPeripheral!
     /// A boolean vaue indicating whether or not Bluetooth is switched on.
     @Published var isSwitchedOn = false
-    /// A list of `Peripheral`s discovered by this device. Useful for displaying a list of discovered peripherals for the user to select.
-    @Published var peripherals = [Peripheral]()
     /// A boolean value indicating whether or not this device is connected to a Hydromon device.
     @Published var isConnected: Bool = false
     /// A dictionary of Hydromon preferences whose keys are preference UUIDs and values are preference values.
@@ -44,7 +42,6 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     
     /// Tells the central manager to attempt to connect to the specified peripheral.
     func connect(peripheral: CBPeripheral) {
-        self.peripheral = peripheral
         self.peripheral.delegate = self
         centralManager.connect(peripheral, options: nil)
     }
@@ -69,10 +66,9 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        let newPeripheral = Peripheral(id: UUID(), peripheral: peripheral)
         if let deviceName = peripheral.name {
             if deviceName == hydromonDeviceName {
-                peripherals.append(newPeripheral)
+                self.peripheral = peripheral
             }
         }
     }
@@ -80,7 +76,7 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if peripheral == self.peripheral {
             if debug { print("Connected to your Hydromon") }
-            self.isConnected = true
+            isConnected = true
             peripheral.discoverServices(nil)
         }
     }
