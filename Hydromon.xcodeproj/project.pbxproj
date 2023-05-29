@@ -46,6 +46,7 @@
 		00F8F5A52989CF110082D0AF /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F5A42989CF110082D0AF /* RequestHandler.swift */; };
 		00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD700E299F0B33001F019B /* GlowViewModifier.swift */; };
 		00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD7011299F1060001F019B /* ConnectionProblemView.swift */; };
+		00FEA72C2A2425D100DE3233 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		00F8F5A42989CF110082D0AF /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		00FD700E299F0B33001F019B /* GlowViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowViewModifier.swift; sourceTree = "<group>"; };
 		00FD7011299F1060001F019B /* ConnectionProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProblemView.swift; sourceTree = "<group>"; };
+		00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				001F74E92A019AFB003EA741 /* BluetoothManager.swift */,
 				001F74F32A0DB8B0003EA741 /* HydromonServices.swift */,
+				00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FEA72C2A2425D100DE3233 /* PreferencesManager.swift in Sources */,
 				001F74F42A0DB8B0003EA741 /* HydromonServices.swift in Sources */,
 				008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */,
 				008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */,

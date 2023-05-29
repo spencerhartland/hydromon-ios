@@ -86,9 +86,16 @@ struct BluetoothConnectionView: View {
                 if bluetoothManager.isSwitchedOn {
                     // Bluetooth is on, looking for Hydromon
                     ConnectionPopupView(currentState: $currentState, variableValue: $variableValue) {
+                        // Perform connection to peripheral
                         bluetoothManager.connect(peripheral: bluetoothManager.peripheral)
                     } dismiss: {
-                        print("Dismiss view")
+                        // Connection established, dismiss this view
+                        let modelNumUUID = HydromonServices.DeviceInformationService.Characteristics.modelNumber
+                        do {
+                            try print(bluetoothManager.preferences.getValue(for: modelNumUUID))
+                        } catch {
+                            print("Invalid preference ID")
+                        }
                     }
                     Spacer()
                 } else {

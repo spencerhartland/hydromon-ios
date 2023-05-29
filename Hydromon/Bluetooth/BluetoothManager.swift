@@ -18,8 +18,8 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     @Published var isSwitchedOn = false
     /// A boolean value indicating whether or not this device is connected to a Hydromon device.
     @Published var isConnected: Bool = false
-    /// A dictionary of Hydromon preferences whose keys are preference UUIDs and values are preference values.
-    @Published var preferences: [CBUUID: String] = [:]
+    /// An instance of `PreferencesManager` which manages a collection of user preferences.
+    @Published var preferences: PreferencesManager = PreferencesManager()
     
     override init() {
         super.init()
@@ -124,7 +124,7 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         if let data = characteristic.value {
             if let value = String(data: data, encoding: .utf8) {
                 if debug { print("Value: \(value)") }
-                preferences[characteristic.uuid] = value
+                preferences.update(preference: characteristic.uuid, value: value)
             } else {
                 print("There was an error casting the characteristic's value as a String.")
             }
