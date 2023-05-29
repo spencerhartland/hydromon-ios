@@ -11,7 +11,11 @@ import CoreBluetooth
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let hydromonDeviceName = "hydromon"
     
-    @Published var centralManager: CBCentralManager!
+    // Central Bluetooth Manager
+    private var centralManager: CBCentralManager!
+    // CBCharacteristics for each preference
+    private var characteristics = CharacteristicsManager()
+    
     /// The `CBPeripheral` this device is connected to (a Hydromon).
     @Published var peripheral: CBPeripheral!
     /// A boolean vaue indicating whether or not Bluetooth is switched on.
@@ -19,7 +23,7 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     /// A boolean value indicating whether or not this device is connected to a Hydromon device.
     @Published var isConnected: Bool = false
     /// An instance of `PreferencesManager` which manages a collection of user preferences.
-    @Published var preferences: PreferencesManager = PreferencesManager()
+    @Published var preferences = PreferencesManager()
     
     override init() {
         super.init()
@@ -47,9 +51,14 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
     }
     
     /// Writes the provided value to the specified characteristic.
-    func write(_ value: String, for characteristic: CBCharacteristic) {
+    func write(_ value: String, to uuid: CBUUID) {
         if let data = value.data(using: .utf8) {
-            self.peripheral.writeValue(data, for: characteristic, type: .withResponse)
+            do {
+                let characteristic = try characteristics.getCharacteristic(with: uuid)
+                self.peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
+            } catch {
+                print("Invalid characteristic ID")
+            }
         } else {
             print("Error getting data from string.")
         }
@@ -108,6 +117,8 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
         
         for characteristic in service.characteristics ?? [] {
+            // Store reference to each characteristic so it can later be written to
+            self.characteristics.update(characteristic, withID: characteristic.uuid)
             if characteristic.properties.contains(.read) {
                 if debug { print("Attempting to read value for characteristic: \(characteristic.uuid)") }
                 peripheral.readValue(for: characteristic)
