@@ -11,7 +11,7 @@
 		00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */; };
 		001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74E92A019AFB003EA741 /* BluetoothManager.swift */; };
 		001F74EE2A01EB8A003EA741 /* BluetoothConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74ED2A01EB8A003EA741 /* BluetoothConnectionView.swift */; };
-		001F74F42A0DB8B0003EA741 /* HydromonServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74F32A0DB8B0003EA741 /* HydromonServices.swift */; };
+		001F74F42A0DB8B0003EA741 /* HydromonUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74F32A0DB8B0003EA741 /* HydromonUUIDs.swift */; };
 		001F74F92A119B8B003EA741 /* AlertPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001F74F82A119B8B003EA741 /* AlertPopupView.swift */; };
 		002285CB299CDFF8008C288C /* Rajdhani-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAE299CDAF100F0528C /* Rajdhani-Light.ttf */; };
 		002285CC299CDFF8008C288C /* Rajdhani-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B9DBAF299CDAF100F0528C /* Rajdhani-Bold.ttf */; };
@@ -47,6 +47,7 @@
 		00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD700E299F0B33001F019B /* GlowViewModifier.swift */; };
 		00FD7012299F1060001F019B /* ConnectionProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FD7011299F1060001F019B /* ConnectionProblemView.swift */; };
 		00FEA72C2A2425D100DE3233 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */; };
+		00FEA72E2A2482F700DE3233 /* CharacteristicsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FEA72D2A2482F700DE3233 /* CharacteristicsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +56,7 @@
 		00124C8A29BAD73100A7ADEA /* BatterySOCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySOCView.swift; sourceTree = "<group>"; };
 		001F74E92A019AFB003EA741 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		001F74ED2A01EB8A003EA741 /* BluetoothConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionView.swift; sourceTree = "<group>"; };
-		001F74F32A0DB8B0003EA741 /* HydromonServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonServices.swift; sourceTree = "<group>"; };
+		001F74F32A0DB8B0003EA741 /* HydromonUUIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydromonUUIDs.swift; sourceTree = "<group>"; };
 		001F74F82A119B8B003EA741 /* AlertPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupView.swift; sourceTree = "<group>"; };
 		002FBF502A147496002F610E /* hydromon-connected.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "hydromon-connected.mp4"; sourceTree = "<group>"; };
 		00472FB229BF18CC00D5B105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		00FD700E299F0B33001F019B /* GlowViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowViewModifier.swift; sourceTree = "<group>"; };
 		00FD7011299F1060001F019B /* ConnectionProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProblemView.swift; sourceTree = "<group>"; };
 		00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		00FEA72D2A2482F700DE3233 /* CharacteristicsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				001F74E92A019AFB003EA741 /* BluetoothManager.swift */,
-				001F74F32A0DB8B0003EA741 /* HydromonServices.swift */,
+				00FEA72D2A2482F700DE3233 /* CharacteristicsManager.swift */,
+				001F74F32A0DB8B0003EA741 /* HydromonUUIDs.swift */,
 				00FEA72B2A2425D100DE3233 /* PreferencesManager.swift */,
 			);
 			path = Bluetooth;
@@ -314,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00FEA72C2A2425D100DE3233 /* PreferencesManager.swift in Sources */,
-				001F74F42A0DB8B0003EA741 /* HydromonServices.swift in Sources */,
+				001F74F42A0DB8B0003EA741 /* HydromonUUIDs.swift in Sources */,
 				008C68EB29B57F0800B0E6B0 /* ViewGeometry.swift in Sources */,
 				008C062D29B5F06B00A94C13 /* WaterLevelStatusView.swift in Sources */,
 				001F74EA2A019AFB003EA741 /* BluetoothManager.swift in Sources */,
@@ -335,6 +338,7 @@
 				00124C8B29BAD73100A7ADEA /* BatterySOCView.swift in Sources */,
 				00CEE1E329CD846E00415001 /* PreferenceTextfieldView-ViewModel.swift in Sources */,
 				00B9DBAA299CD71B00F0528C /* AppConstants.swift in Sources */,
+				00FEA72E2A2482F700DE3233 /* CharacteristicsManager.swift in Sources */,
 				008C062B29B5DAB400A94C13 /* HighlightViewModifer.swift in Sources */,
 				008C68E929B41FE600B0E6B0 /* HydromonStatusView.swift in Sources */,
 				00FD700F299F0B33001F019B /* GlowViewModifier.swift in Sources */,

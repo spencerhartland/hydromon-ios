@@ -90,7 +90,7 @@ struct BluetoothConnectionView: View {
                         bluetoothManager.connect(peripheral: bluetoothManager.peripheral)
                     } dismiss: {
                         // Connection established, dismiss this view
-                        let modelNumUUID = HydromonServices.DeviceInformationService.Characteristics.modelNumber
+                        let modelNumUUID = HydromonUUIDs.DeviceInformation.modelNumberID
                         do {
                             try print(bluetoothManager.preferences.getValue(for: modelNumUUID))
                         } catch {
