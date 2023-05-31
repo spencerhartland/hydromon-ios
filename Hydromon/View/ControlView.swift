@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct ControlView: View {
     private let hydromonText = "hydromon"
     private let texfieldDisclosureIndicatorImageName = "control_textfield-disclosure-indicator"
     private let textfieldDisclosureBackgroundImageName = "control_textfield-disclosure-bg"
@@ -29,14 +29,15 @@ struct ContentView: View {
     private let sipSizeTitle = "Sip Size"
     private let sipSizeFooter = "The average amount of water consumed in one 'sip,' in milileters."
     
-    @StateObject private var viewModel = ViewModel()
+    @StateObject var bluetoothManager: BluetoothManager
+    @Binding var shouldShowControlView: Bool
     
     var body: some View {
         GeometryReader { geo in
             NavigationStack {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading, spacing: 0) {
-                        ConnectionStatusView($viewModel.connected)
+                        ConnectionStatusView($bluetoothManager.isConnected)
                             .offset(x: -8)
                             .padding(.bottom)
                         ZStack(alignment: .bottomTrailing) {
@@ -47,28 +48,22 @@ struct ContentView: View {
                         }
                     }
                     .padding(.leading)
-                    if viewModel.connected {
-                        HydromonStatusView(viewModel: .init(), LCD: $viewModel.preferences.LCDStandbyColor, statusLED: $viewModel.preferences.LEDStandbyColor)
+                    if bluetoothManager.isConnected {
+                        HydromonStatusView(
+                            LCD: $bluetoothManager.preferences.lcdStandbyColor,
+                            statusLED: $bluetoothManager.preferences.ledStandbyColor)
                         // Controls
                         controls
                             .ignoresSafeArea()
                     } else {
                         Spacer()
                         ConnectionProblemView {
-                            viewModel.testConnection()
+                            shouldShowControlView = false
                         }
                         .padding(16)
                         Spacer()
                     }
                 }
-            }
-        }
-        .onAppear {
-            viewModel.testConnection()
-        }
-        .onChange(of: viewModel.connected) { connected in
-            if connected {
-                viewModel.fetchPreferences()
             }
         }
     }
@@ -81,93 +76,85 @@ struct ContentView: View {
                 HStack {
                     // STANDBY
                     NavigationLink {
-                        CustomColorPicker(component: .LCD, mode: .standby) { rgb in
-                            self.viewModel.updatePreference(.LCDStandbyColor, value: rgb)
-                        }
+                        CustomColorPicker(component: .LCD, mode: .standby, color: $bluetoothManager.preferences.lcdStandbyColor)
                         .navigationBarBackButtonHidden()
                     } label: {
-                        IndicatorButton(title: "LCD STANDBY", rgb: $viewModel.preferences.LCDStandbyColor)
+                        IndicatorButton(title: "LCD STANDBY", rgb: bluetoothManager.preferences.lcdStandbyColor)
                     }
                     // ALERT
                     NavigationLink {
-                        CustomColorPicker(component: .LCD, mode: .alert) { rgb in
-                            self.viewModel.updatePreference(.LCDAlertColor, value: rgb)
-                        }
+                        CustomColorPicker(component: .LCD, mode: .alert, color: $bluetoothManager.preferences.lcdAlertColor)
                         .navigationBarBackButtonHidden()
                     } label: {
-                        IndicatorButton(title: "LCD ALERT", rgb: $viewModel.preferences.LCDAlertColor)
+                        IndicatorButton(title: "LCD ALERT", rgb: bluetoothManager.preferences.lcdAlertColor)
                     }
                 }
                 // STATUS LED
                 HStack {
                     // STANDBY
                     NavigationLink {
-                        CustomColorPicker(component: .LED, mode: .standby) { rgb in
-                            self.viewModel.updatePreference(.LEDStandbyColor, value: rgb)
-                        }
+                        CustomColorPicker(component: .LED, mode: .standby, color: $bluetoothManager.preferences.ledStandbyColor)
                         .navigationBarBackButtonHidden()
                     } label: {
-                        IndicatorButton(title: "LED STANDBY", rgb: $viewModel.preferences.LEDStandbyColor)
+                        IndicatorButton(title: "LED STANDBY", rgb: bluetoothManager.preferences.ledStandbyColor)
                     }
                     // ALERT
                     NavigationLink {
-                        CustomColorPicker(component: .LED, mode: .alert) { rgb in
-                            self.viewModel.updatePreference(.LEDAlertColor, value: rgb)
-                        }
+                        CustomColorPicker(component: .LED, mode: .alert, color: $bluetoothManager.preferences.ledAlertColor)
                         .navigationBarBackButtonHidden()
                     } label: {
-                        IndicatorButton(title: "LED ALERT", rgb: $viewModel.preferences.LEDAlertColor)
+                        IndicatorButton(title: "LED ALERT", rgb: bluetoothManager.preferences.ledAlertColor )
                     }
                 }
                 .padding(.bottom, 16)
                 // LCD STANDBY MESSAGE
                 NavigationLink {
-                    PreferenceTextfieldView(title: lcdStandbyMessgageTitle, preference: $viewModel.preferences.LCDStandbyMessage)
+                    PreferenceTextfieldView(title: lcdStandbyMessgageTitle, preference: $bluetoothManager.preferences.lcdStandbyMessage)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: lcdStandbyMessgageTitle, currentValue: viewModel.preferences.LCDStandbyMessage, footer: lcdStandbyMessageFooter)
+                    textfieldDisclosure(title: lcdStandbyMessgageTitle, currentValue: bluetoothManager.preferences.lcdStandbyMessage, footer: lcdStandbyMessageFooter)
                 }
                 // LCD ALERT MESSAGE
                 NavigationLink {
-                    PreferenceTextfieldView(title: lcdAlertMessageTitle, preference: $viewModel.preferences.LCDAlertMessage)
+                    PreferenceTextfieldView(title: lcdAlertMessageTitle, preference: $bluetoothManager.preferences.lcdAlertMessage)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: lcdAlertMessageTitle, currentValue: viewModel.preferences.LCDAlertMessage, footer: lcdAlertMessageFooter)
+                    textfieldDisclosure(title: lcdAlertMessageTitle, currentValue: bluetoothManager.preferences.lcdAlertMessage, footer: lcdAlertMessageFooter)
                 }
                 // STANDBY TIMEOUT
                 NavigationLink {
-                    PreferenceNumberEntryView(title: standbyTimeoutTitle, footer: standbyTimeoutFooter, preference: $viewModel.preferences.standbyTimeout)
+                    PreferenceNumberEntryView(title: standbyTimeoutTitle, footer: standbyTimeoutFooter, preference: $bluetoothManager.preferences.standbyTimeout)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: standbyTimeoutTitle, currentValue: String(viewModel.preferences.standbyTimeout), footer: standbyTimeoutFooter)
+                    textfieldDisclosure(title: standbyTimeoutTitle, currentValue: String(bluetoothManager.preferences.standbyTimeout), footer: standbyTimeoutFooter)
                 }
                 // ALERT TIMEOUT
                 NavigationLink {
-                    PreferenceNumberEntryView(title: alertTimeoutTitle, footer: alertTimeoutFooter, preference: $viewModel.preferences.alertTimeout)
+                    PreferenceNumberEntryView(title: alertTimeoutTitle, footer: alertTimeoutFooter, preference: $bluetoothManager.preferences.alertTimeout)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: alertTimeoutTitle, currentValue: String(viewModel.preferences.alertTimeout), footer: alertTimeoutFooter)
+                    textfieldDisclosure(title: alertTimeoutTitle, currentValue: String(bluetoothManager.preferences.alertTimeout), footer: alertTimeoutFooter)
                 }
                 // ALERT DELAY
                 NavigationLink {
-                    PreferenceNumberEntryView(title: alertDelayTitle, footer: alertDelayFooter, preference: $viewModel.preferences.alertDelay)
+                    PreferenceNumberEntryView(title: alertDelayTitle, footer: alertDelayFooter, preference: $bluetoothManager.preferences.alertDelay)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: alertDelayTitle, currentValue: String(viewModel.preferences.alertDelay), footer: alertDelayFooter)
+                    textfieldDisclosure(title: alertDelayTitle, currentValue: String(bluetoothManager.preferences.alertDelay), footer: alertDelayFooter)
                 }
                 // OLED MAX BRIGHTNESS
                 NavigationLink {
-                    PreferenceNumberEntryView(title: oledMaxBrightnessTitle, footer: oledMaxBrightnessFooter, preference: $viewModel.preferences.OLEDMaxBrightness)
+                    PreferenceNumberEntryView(title: oledMaxBrightnessTitle, footer: oledMaxBrightnessFooter, preference: $bluetoothManager.preferences.oledMaxBrightness)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: oledMaxBrightnessTitle, currentValue: String(viewModel.preferences.OLEDMaxBrightness), footer: oledMaxBrightnessFooter)
+                    textfieldDisclosure(title: oledMaxBrightnessTitle, currentValue: String(bluetoothManager.preferences.oledMaxBrightness), footer: oledMaxBrightnessFooter)
                 }
                 // SIP SIZE
                 NavigationLink {
-                    PreferenceNumberEntryView(title: sipSizeTitle, footer: sipSizeFooter, preference: $viewModel.preferences.sipSize)
+                    PreferenceNumberEntryView(title: sipSizeTitle, footer: sipSizeFooter, preference: $bluetoothManager.preferences.sipSize)
                         .navigationBarBackButtonHidden()
                 } label: {
-                    textfieldDisclosure(title: sipSizeTitle, currentValue: String(viewModel.preferences.sipSize), footer: sipSizeFooter)
+                    textfieldDisclosure(title: sipSizeTitle, currentValue: String(bluetoothManager.preferences.sipSize), footer: sipSizeFooter)
                 }
             }
             .padding(.top, 16)
@@ -220,17 +207,5 @@ struct ContentView: View {
                 .padding([.leading, .trailing], 32)
                 .foregroundColor(Colors.secondary)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .background {
-                Colors.background
-                    .ignoresSafeArea()
-            }
-            .preferredColorScheme(.dark)
-            .edgesIgnoringSafeArea(.bottom)
     }
 }

@@ -60,7 +60,8 @@ struct BluetoothConnectionView: View {
     
     @State var variableValue: Double = 0.0
     @State private var currentState: BluetoothState = .unavailable
-    @StateObject private var bluetoothManager = BluetoothManager()
+    @StateObject var bluetoothManager: BluetoothManager
+    @Binding var shouldShowControlView: Bool
     
     var body: some View {
         ZStack {
@@ -90,12 +91,7 @@ struct BluetoothConnectionView: View {
                         bluetoothManager.connect(peripheral: bluetoothManager.peripheral)
                     } dismiss: {
                         // Connection established, dismiss this view
-                        let modelNumUUID = HydromonUUIDs.DeviceInformation.modelNumberID
-                        do {
-                            try print(bluetoothManager.preferences.getValue(for: modelNumUUID))
-                        } catch {
-                            print("Invalid preference ID")
-                        }
+                        shouldShowControlView = true
                     }
                     Spacer()
                 } else {
@@ -296,14 +292,5 @@ struct BluetoothConnectionView: View {
                     .padding(.horizontal, 8)
             }
         }
-    }
-}
-
-struct BluetoothTestView_Previews: PreviewProvider {
-    private static let botColor = Color(red: 10/255, green: 10/255, blue: 10/255)
-    private static let topColor = Color(red: 8/255, green: 8/255, blue: 8/255)
-    
-    static var previews: some View {
-        BluetoothConnectionView()
     }
 }
