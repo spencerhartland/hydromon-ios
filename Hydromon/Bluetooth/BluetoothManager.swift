@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreBluetooth
+import UIKit
 
 class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let hydromonDeviceName = "hydromon"
@@ -29,9 +30,10 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
         preferences = PreferencesManager(self.write)
+        setupObservers()
     }
     
-    // MARK: - BluetoothManager
+    // MARK: - BluetoothManager Public Methods
     
     /// Tells the central manager to begin scanning for peripherals.
     func startScanning() {
@@ -51,15 +53,21 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
            let savedPeripheralID = UUID(uuidString: savedPeripheralIDString) {
             let knownPeripherals = centralManager.retrievePeripherals(withIdentifiers: [savedPeripheralID])
             if knownPeripherals.count > 0 {
-                connect(peripheral: knownPeripherals[0])
+                self.peripheral = knownPeripherals[0]
+                connect(peripheral: self.peripheral)
             }
         }
     }
     
     /// Tells the central manager to attempt to connect to the specified peripheral.
     func connect(peripheral: CBPeripheral) {
-        self.peripheral.delegate = self
+        peripheral.delegate = self
         centralManager.connect(peripheral, options: nil)
+    }
+    
+    /// Tells the central manager to disconnect from the peripheral.
+    func disconnect(peripheral: CBPeripheral) {
+        centralManager.cancelPeripheralConnection(peripheral)
     }
     
     /// Writes the provided value to the specified characteristic.
@@ -77,6 +85,27 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         } else {
             print("Error getting data from string.")
         }
+    }
+    
+    // MARK: - Lifecycle methods
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+    }
+    
+    @objc private func appWillEnterForeground() {
+        reconnect()
+    }
+    
+    @objc private func appWillResignActive() {
+        print("App entering background")
+        guard let peripheral = peripheral else {
+            print("No peripheral to disconnect from.")
+            return
+        }
+        print("Disconnecting from peripheral...")
+        disconnect(peripheral: peripheral)
     }
     
     // MARK: - CBCentralManagerDelegate
@@ -105,6 +134,10 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
             UserDefaults.standard.set(peripheralUUID, forKey: deviceUUIDUserDefaultsKey)
             peripheral.discoverServices(nil)
         }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        isConnected = false
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
