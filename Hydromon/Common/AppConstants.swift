@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+let deviceUUIDUserDefaultsKey = "device-UUID"
 let debug = true
 
 struct Colors {
