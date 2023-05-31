@@ -13,21 +13,21 @@ struct IndicatorButton: View {
     private let buttonHighlightImageName = "control_color-picker-highlight"
     
     let title: String
-    @Binding var rgb: RGB
+    var rgb: String
     
     var body: some View {
         ZStack {
             Image(indicatorImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(rgb.color())
+                .foregroundColor(RGB(from: rgb).color())
             Image(buttonBackgroundImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             Image(buttonHighlightImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(rgb.color())
+                .foregroundColor(RGB(from: rgb).color())
             HStack {
                 Text(title.uppercased())
                 Spacer()

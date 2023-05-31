@@ -20,9 +20,16 @@ struct CustomColorPicker: View {
     
     let component: Hydromon.Component
     let mode: Hydromon.Mode
-    let action: (RGB) -> Void
     
-    @State private var rgb = RGB(red: 255, green: 255, blue: 255)
+    @Binding var hex: String
+    @State private var rgb: RGB
+    
+    public init(component: Hydromon.Component, mode: Hydromon.Mode, color: Binding<String>) {
+        self.component = component
+        self.mode = mode
+        self._hex = color
+        self._rgb = State(initialValue: RGB(from: color.wrappedValue))
+    }
     
     var body: some View {
         VStack(spacing: 24) {
@@ -36,24 +43,27 @@ struct CustomColorPicker: View {
             colorSelectionPreview
             rgbValues
             VStack(spacing: 24) {
-                ColorPickerBar(color: Color(red: 1, green: 0, blue: 0)) { value in
+                ColorPickerBar(color: Color(red: 1, green: 0, blue: 0), currentValue: rgb.red) { value in
                     self.rgb.red = Int(value)
                 }
-                ColorPickerBar(color: Color(red: 0, green: 1, blue: 0)) { value in
+                ColorPickerBar(color: Color(red: 0, green: 1, blue: 0), currentValue: rgb.green) { value in
                     self.rgb.green = Int(value)
                 }
-                ColorPickerBar(color: Color(red: 0, green: 0, blue: 1)) { value in
+                ColorPickerBar(color: Color(red: 0, green: 0, blue: 1), currentValue: rgb.blue) { value in
                     self.rgb.blue = Int(value)
                 }
             }
             Spacer()
             LargeButton(title: String(format: buttonTextTemplate, mode.rawValue), color: rgb.color()) {
-                action(self.rgb)
+                hex = rgb.hexString()
                 self.presentationMode.wrappedValue.dismiss()
             }
         }
         .padding(.horizontal, 16)
         .foregroundColor(Colors.primary)
+        .onAppear {
+            rgb = RGB(from: hex)
+        }
     }
     
     private var rgbValues: some View {
@@ -91,7 +101,6 @@ struct CustomColorPicker: View {
                 .foregroundColor(Colors.secondaryBackground)
             switch component {
             case .LCD:
-                // TODO: - Add in accessory views that show the color in a larger color well in addition to the compoent
                 Image(Hydromon.Icon.lcdImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -169,9 +178,15 @@ private struct ColorPickerBar: View {
     private let pointerSymbolName = "play.fill"
     
     @State var color: Color
-    @State private var sliderValue = SliderBounds.max
+    @State private var sliderValue: Double
     
     let action: (Double) -> Void
+    
+    init(color: Color, currentValue: Int, action: @escaping (Double) -> Void) {
+        self.color = color
+        self.action = action
+        self.sliderValue = ((Double(currentValue) / 255) * (SliderBounds.max - SliderBounds.min)) + SliderBounds.min
+    }
     
     var body: some View {
         VStack {
