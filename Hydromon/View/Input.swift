@@ -18,11 +18,18 @@ struct PreferenceTextfieldView: View {
     @StateObject private var viewModel = ViewModel()
     
     let title: String
+    let footer: String
     @Binding var preference: String
     
     var body: some View {
         VStack {
             VStack(alignment: .trailing) {
+                HStack {
+                    Text(title.uppercased())
+                        .font(Fonts.bold(size: 16))
+                        .foregroundColor(Colors.primary)
+                    Spacer()
+                }
                 ZStack {
                     Image(textfieldBackgroundImageName)
                         .resizable()
@@ -30,7 +37,7 @@ struct PreferenceTextfieldView: View {
                         .foregroundColor(Colors.secondaryBackground)
                         .overlay {
                             HStack {
-                                TextField(title, text: $viewModel.text)
+                                TextField(preference, text: $viewModel.text)
                                     .font(Fonts.medium(size: 16))
                                     .foregroundColor(Colors.primary)
                                     .padding(.leading)
@@ -45,10 +52,11 @@ struct PreferenceTextfieldView: View {
                             }
                         }
                 }
+                Text(footer)
+                    .font(Fonts.regular(size: 10))
+                    .foregroundColor(Colors.secondary)
                 CharacterCountDisplay(currentCharacterCount: self.viewModel.text.count, maxCharacterCount: self.viewModel.maxCharacterCount)
             }
-            .padding(.top, 32)
-            .padding(.horizontal, 8)
             Spacer()
             LargeButton(title: (viewModel.text.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
                 if !viewModel.text.isEmpty {
@@ -57,6 +65,8 @@ struct PreferenceTextfieldView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
         }
+        .padding(.top, 32)
+        .padding(.horizontal, 8)
         .background {
             Colors.background
                 .ignoresSafeArea()
@@ -80,7 +90,10 @@ struct PreferenceNumberEntryView: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .trailing) {
+            VStack(alignment: .leading) {
+                Text(title.uppercased())
+                    .font(Fonts.bold(size: 16))
+                    .foregroundColor(Colors.primary)
                 ZStack {
                     Image(textfieldBackgroundImageName)
                         .resizable()
@@ -88,7 +101,7 @@ struct PreferenceNumberEntryView: View {
                         .foregroundColor(Colors.secondaryBackground)
                         .overlay {
                             HStack {
-                                TextField(title, text: $input)
+                                TextField(String(preference), text: $input)
                                     .keyboardType(.numberPad)
                                     .font(Fonts.medium(size: 16))
                                     .foregroundColor(Colors.primary)
@@ -104,12 +117,13 @@ struct PreferenceNumberEntryView: View {
                             }
                         }
                 }
-                Text(footer)
-                    .font(Fonts.regular(size: 8))
-                    .foregroundColor(Colors.secondary)
+                HStack {
+                    Spacer()
+                    Text(footer)
+                        .font(Fonts.regular(size: 10))
+                        .foregroundColor(Colors.secondary)
+                }
             }
-            .padding(.top, 32)
-            .padding(.horizontal, 8)
             Spacer()
             LargeButton(title: (input.isEmpty ? cancelText : String(format: buttonTextTemplate, title)).uppercased(), color: Colors.primary) {
                 if !input.isEmpty {
@@ -123,6 +137,8 @@ struct PreferenceNumberEntryView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
         }
+        .padding(.top, 32)
+        .padding(.horizontal, 8)
         .background {
             Colors.background
                 .ignoresSafeArea()
@@ -182,6 +198,8 @@ fileprivate struct CharacterCountDisplay: View {
 
 struct Input_Previews: PreviewProvider {
     static var previews: some View {
-        PreferenceNumberEntryView(title: "Alert Timeout", footer: "The duration of a drink reminder alert in seconds.", preference: .constant(0))
+        PreferenceTextfieldView(title: "LCD Alert Message", footer: "This message will be displayed on the LCD during a drink reminder alert.", preference: .constant("Drink now!"))
+        
+        PreferenceNumberEntryView(title: "Sip Size", footer: "The average amount of water consumed in one 'sip,' in milileters.", preference: .constant(60))
     }
 }

@@ -109,14 +109,14 @@ struct ControlView: View {
                 .padding(.bottom, 16)
                 // LCD STANDBY MESSAGE
                 NavigationLink {
-                    PreferenceTextfieldView(title: lcdStandbyMessgageTitle, preference: $bluetoothManager.preferences.lcdStandbyMessage)
+                    PreferenceTextfieldView(title: lcdStandbyMessgageTitle, footer: lcdStandbyMessageFooter, preference: $bluetoothManager.preferences.lcdStandbyMessage)
                         .navigationBarBackButtonHidden()
                 } label: {
                     textfieldDisclosure(title: lcdStandbyMessgageTitle, currentValue: bluetoothManager.preferences.lcdStandbyMessage, footer: lcdStandbyMessageFooter)
                 }
                 // LCD ALERT MESSAGE
                 NavigationLink {
-                    PreferenceTextfieldView(title: lcdAlertMessageTitle, preference: $bluetoothManager.preferences.lcdAlertMessage)
+                    PreferenceTextfieldView(title: lcdAlertMessageTitle, footer: lcdAlertMessageFooter, preference: $bluetoothManager.preferences.lcdAlertMessage)
                         .navigationBarBackButtonHidden()
                 } label: {
                     textfieldDisclosure(title: lcdAlertMessageTitle, currentValue: bluetoothManager.preferences.lcdAlertMessage, footer: lcdAlertMessageFooter)
