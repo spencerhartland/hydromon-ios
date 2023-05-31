@@ -36,19 +36,19 @@ struct ControlView: View {
         GeometryReader { geo in
             NavigationStack {
                 VStack(alignment: .leading) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        ConnectionStatusView($bluetoothManager.isConnected)
-                            .offset(x: -8)
-                            .padding(.bottom)
-                        ZStack(alignment: .bottomTrailing) {
-                            HydromonLogoView()
-                            BatterySOCView(charging: .constant(false), batterySOC: .constant(0.55))
-                                .frame(height: 6)
-                                .offset(x: -24, y: -2.5)
-                        }
-                    }
-                    .padding(.leading)
                     if bluetoothManager.isConnected {
+                        VStack(alignment: .leading, spacing: 0) {
+                            ConnectionStatusView($bluetoothManager.isConnected)
+                                .offset(x: -8)
+                                .padding(.bottom)
+                            ZStack(alignment: .bottomTrailing) {
+                                HydromonLogoView()
+                                BatterySOCView(charging: .constant(false), batterySOC: .constant(0.55))
+                                    .frame(height: 6)
+                                    .offset(x: -24, y: -2.5)
+                            }
+                        }
+                        .padding(.leading)
                         HydromonStatusView(
                             LCD: $bluetoothManager.preferences.lcdStandbyColor,
                             statusLED: $bluetoothManager.preferences.ledStandbyColor)
